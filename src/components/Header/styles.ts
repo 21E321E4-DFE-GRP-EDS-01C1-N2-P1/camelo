@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   background: var(--background);
+
+  .bannerArea > img {
+    width: 100%;
+  }
 `;
 
 export const Content = styled.div`
@@ -51,11 +55,43 @@ export const NavigationArea = styled.div`
     margin-left: 5rem;
   }
 
+  nav {
+    display: flex;
+
+    input {
+      margin: 0 1rem;
+    }
+  }
+
   a {
     color: var(--text);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.2rem;
     font-weight: 600;
+  }
+
+  input {
+    padding: .5rem 1.5rem;
+    height: 2.5rem;
+    border-radius: 0.25rem;
+    background: var(--gray-light);
+    border: 1px solid #d7d7d7;
+
+  }
+
+  button {
+    padding: 0 1.5rem;
+    height: 2.5rem;
+    background: var(--blue);
+    color: var(--background);
+    border: 0;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: opacity(0.9);
+    }
   }
 `;
