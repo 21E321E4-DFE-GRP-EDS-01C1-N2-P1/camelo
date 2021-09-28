@@ -61,6 +61,10 @@ export const NavigationArea = styled.div`
     input {
       margin: 0 1rem;
     }
+
+    a {
+      color: var(--blue);
+    }
   }
 
   a {
