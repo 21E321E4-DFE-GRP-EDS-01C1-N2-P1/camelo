@@ -1,0 +1,33 @@
+
+USUARIO
+    - registrar
+        - não pode permitir email duplicado
+        - verificacao de senha
+        
+    - autenticar
+        - email precisa estar cadastrado
+        - senha precisa ser encriptada
+
+    - editar perfil
+        - editar o endereço
+        - cadastrar forma de pagamento
+        - informar o nome
+        - mudar a senha
+
+    - esqueci minha senha
+        - envia uma nova senha para o email do usuario
+
+
+APLICACAO
+    - listar produtos
+    - obter um produto selecionado
+        exibir detalhes do protudo
+    - permitir adicionar produto ao carrinho
+    - compartilhar link do produto por rede social
+    - permitir filtro por tipos de produto
+    - permitir pagamento
+        - selecionar forma de pagamento ja cadastrado
+        - permitir o cadastro de uma forma de pagamento
+    - enviar email informando pedido
+
+

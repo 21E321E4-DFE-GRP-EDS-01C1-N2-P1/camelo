@@ -1,0 +1,13 @@
+
+paleta de cores:
+    -color
+        40BFFF
+        FF4858
+        BCDDFE
+        373737
+
+- aplicação deve ser responsiva
+- busca dos produtos deve ser performatica
+- deve permitir autenticacao segura
+- deve armazenar dados do usuario criptografado para segurança
+- deve ter html semantico para acessibilidade
