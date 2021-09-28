@@ -35,6 +35,10 @@ export function Header() {
         <div className="bannerArea">
           <img src={bannerImg} alt="banner img" title="banner img" />
         </div>
+
+        <div className="promotion">
+          <h2>Super Flash Sale <br/> 50% off</h2>
+        </div>
     </Container>
   );
 }

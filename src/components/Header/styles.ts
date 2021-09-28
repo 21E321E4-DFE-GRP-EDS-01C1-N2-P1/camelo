@@ -6,6 +6,23 @@ export const Container = styled.header`
   .bannerArea > img {
     width: 100%;
   }
+
+  .bannerArea {
+    position: absolute;
+    width: 100%;
+  }
+
+  .promotion {
+    position: relative;
+    
+    h2 {
+      font-weight: 700;
+      font-size: 5rem;
+      color: var(--background);
+
+      margin: 16rem 9rem;
+    }
+  }
 `;
 
 export const Content = styled.div`
