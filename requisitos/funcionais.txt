@@ -17,6 +17,8 @@ USUARIO
     - esqueci minha senha
         - envia uma nova senha para o email do usuario
 
+    - deve poder favoritar um produto
+
 
 APLICACAO
     - listar produtos
