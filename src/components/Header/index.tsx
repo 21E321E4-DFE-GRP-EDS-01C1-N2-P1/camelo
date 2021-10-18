@@ -2,7 +2,7 @@ import { FiUser, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { Container, Content, NavigationArea, ProfileArea } from "./styles";
 import logoImg from "../../assets/logo.svg";
-import bannerImg from "../../assets/banner.svg";
+import { Banner } from "../Banner";
 
 export function Header() {
   return (
@@ -21,7 +21,7 @@ export function Header() {
         </ProfileArea>
 
         <NavigationArea>
-            <img src={logoImg} alt="logo img" title="logo img" />
+          <img src={logoImg} alt="logo img" title="logo img" />
 
           <nav>
             <ul>
@@ -32,13 +32,8 @@ export function Header() {
           </nav>
         </NavigationArea>
       </Content>
-        <div className="bannerArea">
-          <img src={bannerImg} alt="banner img" title="banner img" />
-        </div>
 
-        <div className="promotion">
-          <h2>Super Flash Sale <br/> 50% off</h2>
-        </div>
+      <Banner />
     </Container>
   );
 }
