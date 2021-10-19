@@ -23,10 +23,6 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
         {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
     ]);
 
-    useEffect(() => {
-        console.log(products);
-    })
-
     return (
         <ProductsContext.Provider value={{ products }}>
             {children}
