@@ -12,19 +12,29 @@ interface ProductsProviderProps {
 
 interface ProductsContextData {
     products: Product[];
+    productsOnSale: Product[];
 }
 
 const ProductsContext = createContext<ProductsContextData>({} as ProductsContextData);
 
 export function ProductsProvider({ children }: ProductsProviderProps) {
-    const [products, setProducts] = useState<Product[]>([
+    const [productsOnSale, setProductsOnSale] = useState<Product[]>([
         {img: produtoHeader1, name: "FS - QUILTED MAXI CROSS BAG", price: 534.33, promotionPrice: 299.43},
         {img: produtoHeader2, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
         {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
     ]);
 
+    const [products, setProducts] = useState<Product[]>([
+        {img: produtoHeader1, name: "FS - QUILTED MAXI CROSS BAG", price: 534.33, promotionPrice: 299.43},
+        {img: produtoHeader2, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
+        {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
+        {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
+        {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
+        {img: produtoHeader3, name: "FS - Nike Air Max 270 React...", price: 534.33, promotionPrice: 299.43},
+    ]);
+
     return (
-        <ProductsContext.Provider value={{ products }}>
+        <ProductsContext.Provider value={{ products, productsOnSale }}>
             {children}
         </ProductsContext.Provider>
     );

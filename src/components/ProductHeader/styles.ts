@@ -11,12 +11,8 @@ export const Product = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  
   padding: 1rem;
-  
-  & + div {
-    margin-left: 1rem;
-  }
+  margin: 1rem;
 `;
 
 export const Header = styled.div`
