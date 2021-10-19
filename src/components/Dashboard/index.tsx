@@ -5,7 +5,7 @@ import { formatPrice } from "../../util/format";
 import { ProductHeader } from "../ProductHeader";
 import { useProducts } from "../../hooks/UseProducts";
 
-import { DashboardHeader, DashboardMain } from "./styles";
+import { DashboardHeader, DashboardMain, Container } from "./styles";
 import { Products } from "../Products";
 
 interface ProductFormatted extends Product {
@@ -35,7 +35,7 @@ export function Dashboard() {
     }, [])
 
     return (
-        <>
+        <Container>
             <DashboardHeader>
                 {ProductsOnSaleDTO.map(product => (
                     <ProductHeader
@@ -47,6 +47,8 @@ export function Dashboard() {
                 ))}
             </DashboardHeader>
 
+            <h2>BEST SELLER</h2>
+
             <DashboardMain>
                 {ProductsDTO.map(product => (
                     <Products
@@ -57,6 +59,6 @@ export function Dashboard() {
                     />
                 ))}
             </DashboardMain>
-        </>
+        </Container>
     );
 }

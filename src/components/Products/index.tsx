@@ -1,4 +1,4 @@
-import { Product } from "./styles";
+import {Container, Product} from "./styles";
 
 interface ProductProps {
     name: string;
@@ -9,7 +9,7 @@ interface ProductProps {
 
 export function Products({ name, image, price, promotionPrice }: ProductProps) {
     return (
-        <div>
+        <Container>
             <Product>
                 <img src={image} alt=""/>
                 <p className="title">{name}</p>
@@ -18,6 +18,6 @@ export function Products({ name, image, price, promotionPrice }: ProductProps) {
                     <p>{promotionPrice}</p>
                 </div>
             </Product>
-        </div>
+        </Container>
     );
 }

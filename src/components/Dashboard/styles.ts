@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  h2 {
+    text-align: center;
+    margin: 2rem;
+  }
+`;
+
 export const DashboardMain = styled.div`
   display: flex;
   align-items: center;
