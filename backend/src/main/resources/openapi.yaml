@@ -1,0 +1,110 @@
+openapi: 3.0.2
+info:
+  title: camelo--banckend
+  version: 1.0.0
+paths:
+  /produtos/promocao:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Produto'
+              examples:
+                Produtos em promocao:
+                  value:
+                    -
+                      id: 77
+                      nome: some text
+                      url: some text
+                      preco: 16.07
+                      desconto: 18
+                    -
+                      id: 0
+                      nome: some text
+                      url: some text
+                      preco: 60.42
+                      desconto: 17
+          description: sucesso
+        '204':
+          description: Erro
+        '400':
+          description: Erro
+        '404':
+          description: Erro
+        '500':
+          description: Erro
+      operationId: buscarProdutosEmPromocao
+      summary: Busca produtos em promoção
+components:
+  schemas:
+    Produto:
+      title: Root Type for Produto
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        nome:
+          type: string
+        url:
+          type: string
+        preco:
+          format: double
+          type: number
+        desconto:
+          format: int32
+          type: integer
+      example:
+        id: 1
+        nome: casaco
+        url: casaco.com
+        preco: 99.99
+        desconto: 20
+    Error:
+      title: Root Type for Error
+      description: ''
+      type: object
+      properties:
+        mensagem:
+          type: string
+      example:
+        mensagem: error
+  responses:
+    ProdutosEmPromocao:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Produto'
+          examples:
+            Produtos em promocao:
+              value:
+                -
+                  id: 65
+                  nome: some text
+                  url: some text
+                  preco: 34.37
+                  desconto: 19
+                -
+                  id: 27
+                  nome: some text
+                  url: some text
+                  preco: 54.27
+                  desconto: 42
+      description: ''
+    InfoErro:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            Erro:
+              value:
+                mensagem: some text
+      description: ''
