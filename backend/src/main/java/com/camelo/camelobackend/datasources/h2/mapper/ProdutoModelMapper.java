@@ -10,5 +10,6 @@ public interface ProdutoModelMapper {
 
     ProdutoModelMapper INSTANCE = Mappers.getMapper(ProdutoModelMapper.class);
 
+    ProdutoModel map(Produto produto);
     Produto map(ProdutoModel model);
 }

@@ -9,7 +9,7 @@ public interface ProdutoResponseMapper {
 
     ProdutoResponseMapper INSTANCE = Mappers.getMapper(ProdutoResponseMapper.class);
 
-
+    com.camelo.camelobackend.domain.Produto map(Produto produto);
     Produto map(com.camelo.camelobackend.domain.Produto produto);
 
 }

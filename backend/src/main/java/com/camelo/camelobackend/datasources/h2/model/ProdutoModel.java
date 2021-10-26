@@ -1,11 +1,9 @@
 package com.camelo.camelobackend.datasources.h2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity(name = "PRODUTO")
 public class ProdutoModel {
@@ -24,6 +22,14 @@ public class ProdutoModel {
     private BigDecimal preco;
 
     private Long desconto;
+
+    @ManyToMany
+    @JoinTable(
+            name = "PRODUTO_CATEGORIAS",
+            joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private Set<CategoriaModel> categorias;
 
     public Long getId() {
         return id;
@@ -63,5 +69,9 @@ public class ProdutoModel {
 
     public void setDesconto(Long desconto) {
         this.desconto = desconto;
+    }
+
+    public Set<CategoriaModel> getCategorias() {
+        return categorias;
     }
 }

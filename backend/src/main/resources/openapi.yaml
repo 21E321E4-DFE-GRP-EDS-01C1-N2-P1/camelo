@@ -3,6 +3,58 @@ info:
   title: camelo--banckend
   version: 1.0.0
 paths:
+  /categorias:
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/CategoriasResponse'
+        '400':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
+  /produto:
+    get:
+      parameters:
+        -
+          name: idProduto
+          description: ''
+          schema:
+            type: number
+          in: query
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/ProdutoReponse'
+        '204':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+            examples:
+              Payload Criacao Produto:
+                value:
+                  nome: some text
+                  url: some text
+                  preco: 96.31
+        required: true
+      responses:
+        '201':
+          $ref: '#/components/responses/ProdutoReponse'
+        '400':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
   /produtos/promocao:
     get:
       responses:
@@ -49,6 +101,19 @@ components:
           type: string
       example:
         mensagem: error
+    Categoria:
+      title: Root Type for Categoria
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        descricao:
+          type: string
+      example:
+        id: 1
+        descricao: TODOS
   responses:
     ProdutosEmPromocao:
       content:
@@ -82,4 +147,35 @@ components:
             Erro:
               value:
                 mensagem: some text
+      description: ''
+    CategoriasResponse:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Categoria'
+          examples:
+            Categorias:
+              value:
+                -
+                  id: 38
+                  descricao: some text
+                -
+                  id: 55
+                  descricao: some text
+      description: ''
+    ProdutoReponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Produto'
+          examples:
+            Produto Criado:
+              value:
+                id: 85
+                nome: some text
+                url: some text
+                preco: 88.8
+                desconto: 43
       description: ''

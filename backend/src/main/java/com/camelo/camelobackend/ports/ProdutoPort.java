@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface ProdutoPort {
 
+    Produto cadastra(Produto produto);
     List<Produto> emPromocao();
+    Produto obterPor(Long id);
 }
