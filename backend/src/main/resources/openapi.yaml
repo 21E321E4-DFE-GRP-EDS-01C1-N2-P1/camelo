@@ -7,38 +7,13 @@ paths:
     get:
       responses:
         '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Produto'
-              examples:
-                Produtos em promocao:
-                  value:
-                    -
-                      id: 77
-                      nome: some text
-                      url: some text
-                      preco: 16.07
-                      desconto: 18
-                    -
-                      id: 0
-                      nome: some text
-                      url: some text
-                      preco: 60.42
-                      desconto: 17
-          description: sucesso
-        '204':
-          description: Erro
+          $ref: '#/components/responses/ProdutosEmPromocao'
         '400':
-          description: Erro
+          $ref: '#/components/responses/InfoErro'
         '404':
-          description: Erro
+          $ref: '#/components/responses/InfoErro'
         '500':
-          description: Erro
-      operationId: buscarProdutosEmPromocao
-      summary: Busca produtos em promoção
+          $ref: '#/components/responses/InfoErro'
 components:
   schemas:
     Produto:
@@ -86,18 +61,18 @@ components:
             Produtos em promocao:
               value:
                 -
-                  id: 65
+                  id: 5
                   nome: some text
                   url: some text
-                  preco: 34.37
-                  desconto: 19
+                  preco: 14.14
+                  desconto: 28
                 -
-                  id: 27
+                  id: 28
                   nome: some text
                   url: some text
-                  preco: 54.27
-                  desconto: 42
-      description: ''
+                  preco: 76.43
+                  desconto: 65
+      description: Produtos em promoção
     InfoErro:
       content:
         application/json:

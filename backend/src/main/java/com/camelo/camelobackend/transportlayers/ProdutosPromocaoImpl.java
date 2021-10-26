@@ -22,7 +22,7 @@ public class ProdutosPromocaoImpl implements ProdutosApi {
     }
 
     @Override
-    public ResponseEntity<List<Produto>> buscarProdutosEmPromocao() {
+    public ResponseEntity<List<Produto>> produtosPromocaoGet() {
         ProdutoResponseMapper mapper = ProdutoResponseMapper.INSTANCE;
 
         var resposta = produtosEmPromocaoUseCase.executar();

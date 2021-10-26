@@ -23,7 +23,7 @@ public class ProdutoRepository implements ProdutoPort {
 
     @Override
     public List<Produto> emPromocao() {
-        var produtos = (List<ProdutoModel>) data.findAll();
+        var produtos = data.findByDescontoNotNull();
 
         return produtos.stream().map(mapper::map).collect(Collectors.toList());
     }
