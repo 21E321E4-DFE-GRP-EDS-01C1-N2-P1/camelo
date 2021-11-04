@@ -2,15 +2,15 @@ package com.camelo.camelobackend.domain;
 
 import java.util.List;
 
-public class Profile {
+public class Perfil {
 
     private final Long id;
     private final String name;
     private final String email;
     private final String password;
-    private final List<Role> roles;
+    private final List<Funcao> roles;
 
-    public Profile(Long id, String name, String email, String password, List<Role> roles) {
+    public Perfil(Long id, String name, String email, String password, List<Funcao> roles) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -34,7 +34,7 @@ public class Profile {
         return password;
     }
 
-    public List<Role> getRoles() {
+    public List<Funcao> getRoles() {
         return roles;
     }
 }

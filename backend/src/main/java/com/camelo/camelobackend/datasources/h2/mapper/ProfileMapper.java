@@ -2,8 +2,8 @@ package com.camelo.camelobackend.datasources.h2.mapper;
 
 import com.camelo.camelobackend.datasources.h2.model.ProfileModel;
 import com.camelo.camelobackend.datasources.h2.model.RoleModel;
-import com.camelo.camelobackend.domain.Profile;
-import com.camelo.camelobackend.domain.Role;
+import com.camelo.camelobackend.domain.Funcao;
+import com.camelo.camelobackend.domain.Perfil;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -12,9 +12,9 @@ public interface ProfileMapper {
 
     ProfileMapper INSTANCE = Mappers.getMapper(ProfileMapper.class);
 
-    ProfileModel map(Profile profile);
-    Profile map(ProfileModel profile);
+    ProfileModel map(Perfil profile);
+    Perfil map(ProfileModel profile);
 
-    RoleModel map(Role value);
-    Role map(RoleModel value);
+    RoleModel map(Funcao value);
+    Funcao map(RoleModel value);
 }

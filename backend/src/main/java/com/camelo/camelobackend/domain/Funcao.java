@@ -1,6 +1,6 @@
 package com.camelo.camelobackend.domain;
 
-public class Role {
+public class Funcao {
 
     private Long id;
     private String name;
@@ -13,7 +13,7 @@ public class Role {
         return name;
     }
 
-    public Role(Long id, String name) {
+    public Funcao(Long id, String name) {
         this.id = id;
         this.name = name;
     }

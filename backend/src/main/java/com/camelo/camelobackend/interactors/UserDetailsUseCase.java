@@ -1,6 +1,6 @@
 package com.camelo.camelobackend.interactors;
 
-import com.camelo.camelobackend.ports.ProfilePort;
+import com.camelo.camelobackend.ports.PefilPort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,9 +11,9 @@ import java.util.Objects;
 @Service
 public class UserDetailsUseCase implements UserDetailsService {
 
-    private final ProfilePort port;
+    private final PefilPort port;
 
-    public UserDetailsUseCase(ProfilePort port) {
+    public UserDetailsUseCase(PefilPort port) {
         this.port = port;
     }
 
