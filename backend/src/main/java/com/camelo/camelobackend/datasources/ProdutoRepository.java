@@ -1,4 +1,4 @@
-package com.camelo.camelobackend.datasources.h2;
+package com.camelo.camelobackend.datasources;
 
 import com.camelo.camelobackend.datasources.h2.data.ProdutoData;
 import com.camelo.camelobackend.datasources.h2.mapper.ProdutoModelMapper;
