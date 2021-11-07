@@ -2,7 +2,7 @@ package com.camelo.camelobackend.datasources;
 
 import com.camelo.camelobackend.datasources.h2.data.RoleData;
 import com.camelo.camelobackend.datasources.h2.mapper.RoleMapper;
-import com.camelo.camelobackend.domain.Funcao;
+import com.camelo.camelobackend.domain.Role;
 import com.camelo.camelobackend.ports.FuncaoPort;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class FuncaoRepository implements FuncaoPort {
     }
 
     @Override
-    public Funcao buscarPor(String name) {
+    public Role buscarPor(String name) {
         var roleModel = data.findByName(name);
         return mapper.map(roleModel);
     }

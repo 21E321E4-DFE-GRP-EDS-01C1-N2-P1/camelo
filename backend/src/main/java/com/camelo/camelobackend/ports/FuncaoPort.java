@@ -1,8 +1,8 @@
 package com.camelo.camelobackend.ports;
 
-import com.camelo.camelobackend.domain.Funcao;
+import com.camelo.camelobackend.domain.Role;
 
 public interface FuncaoPort {
 
-    Funcao buscarPor(String name);
+    Role buscarPor(String name);
 }

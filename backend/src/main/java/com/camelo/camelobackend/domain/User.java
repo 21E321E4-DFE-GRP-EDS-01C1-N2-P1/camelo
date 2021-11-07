@@ -1,21 +1,26 @@
 package com.camelo.camelobackend.domain;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Perfil {
+public class User {
 
     private final Long id;
     private final String name;
     private final String email;
-    private final String password;
-    private final List<Funcao> roles;
+    private String password;
+    private final Set<Role> roles;
 
-    public Perfil(Long id, String name, String email, String password, List<Funcao> roles) {
+    public User(Long id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.roles = new HashSet<>();
+    }
+
+    public void encriptarSenha(String senhaEncriptada) {
+        this.password = senhaEncriptada;
     }
 
     public Long getId() {
@@ -34,7 +39,7 @@ public class Perfil {
         return password;
     }
 
-    public List<Funcao> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 }

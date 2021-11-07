@@ -3,11 +3,11 @@ package com.camelo.camelobackend.datasources.h2.model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "PROFILE")
-public class ProfileModel {
+@Entity(name = "USER")
+public class UserModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -19,7 +19,7 @@ public class ProfileModel {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name="PROFILE_ROLE",
+            name="USER_ROLE",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id")
     )

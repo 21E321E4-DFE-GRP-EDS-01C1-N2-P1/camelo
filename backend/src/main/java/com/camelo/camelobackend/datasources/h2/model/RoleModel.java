@@ -1,25 +1,18 @@
 package com.camelo.camelobackend.datasources.h2.model;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "ROLE")
-public class RoleModel implements GrantedAuthority {
+public class RoleModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-
-    @Override
-    public String getAuthority() {
-        return this.name;
-    }
 
     public Long getId() {
         return id;
