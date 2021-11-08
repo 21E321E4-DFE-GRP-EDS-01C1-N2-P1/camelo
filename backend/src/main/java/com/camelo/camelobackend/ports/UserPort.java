@@ -6,5 +6,5 @@ public interface UserPort {
     User buscarPor(String email);
     User buscarPor(Long id);
 
-    User criar(User user);
+    User salvar(User user);
 }

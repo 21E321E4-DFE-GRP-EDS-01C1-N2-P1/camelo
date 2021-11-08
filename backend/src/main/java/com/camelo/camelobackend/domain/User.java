@@ -23,6 +23,10 @@ public class User {
         this.password = senhaEncriptada;
     }
 
+    public void atribuirNovaSenha(String novaSenha) {
+        this.password = novaSenha;
+    }
+
     public Long getId() {
         return id;
     }

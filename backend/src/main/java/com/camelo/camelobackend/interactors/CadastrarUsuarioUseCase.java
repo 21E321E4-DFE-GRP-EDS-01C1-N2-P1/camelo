@@ -4,7 +4,6 @@ import com.camelo.camelobackend.domain.Role;
 import com.camelo.camelobackend.domain.RoleType;
 import com.camelo.camelobackend.domain.User;
 import com.camelo.camelobackend.ports.UserPort;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,7 @@ public class CadastrarUsuarioUseCase {
         addRole(RoleType.CLIENTE, user);
         codificarSenha(user);
 
-        return userPort.criar(user);
+        return userPort.salvar(user);
     }
 
     private void addRole(RoleType role, User user) {

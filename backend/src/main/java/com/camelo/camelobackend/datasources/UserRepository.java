@@ -30,7 +30,7 @@ public class UserRepository implements UserPort {
     }
 
     @Override
-    public User criar(User user) {
+    public User salvar(User user) {
         var userModel = mapper.map(user);
         var usuarioCriado = userData.save(userModel);
         return mapper.map(usuarioCriado);
