@@ -14,7 +14,7 @@ paths:
           $ref: '#/components/responses/InfoErro'
         '500':
           $ref: '#/components/responses/InfoErro'
-  /produto:
+  /produtos:
     get:
       parameters:
         -
@@ -60,6 +60,17 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ProdutosEmPromocao'
+        '400':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
+  /produtos/categorizado:
+    get:
+      responses:
+        '200':
+          $ref: '#/components/responses/ProdutoCategorizado'
         '400':
           $ref: '#/components/responses/InfoErro'
         '404':
@@ -114,6 +125,41 @@ components:
       example:
         id: 1
         descricao: TODOS
+    ProdutoCategorizado:
+      title: Root Type for ProdutoCategorizado
+      description: ''
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        nome:
+          type: string
+        url:
+          type: string
+        preco:
+          format: double
+          type: number
+        desconto:
+          format: int32
+          type: integer
+        categoria:
+          type: object
+          properties:
+            id:
+              format: int32
+              type: integer
+            descricao:
+              type: string
+      example:
+        id: 1
+        nome: casaco
+        url: casaco.com
+        preco: 99.99
+        desconto: 20
+        categoria:
+          id: 1
+          descricao: TODOS
   responses:
     ProdutosEmPromocao:
       content:
@@ -178,4 +224,33 @@ components:
                 url: some text
                 preco: 88.8
                 desconto: 43
+      description: ''
+    ProdutoCategorizado:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProdutoCategorizado'
+          examples:
+            Produtos Categorizado:
+              value:
+                -
+                  id: 25
+                  nome: some text
+                  url: some text
+                  preco: 11.07
+                  desconto: 18
+                  categoria:
+                    id: 1
+                    descricao: some text
+                -
+                  id: 6
+                  nome: some text
+                  url: some text
+                  preco: 38.34
+                  desconto: 67
+                  categoria:
+                    id: 31
+                    descricao: some text
       description: ''
