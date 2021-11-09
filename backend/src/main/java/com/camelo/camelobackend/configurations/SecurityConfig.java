@@ -30,14 +30,15 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private Environment env;
+	private final Environment env;
+	private final UserDetailsService userDetailsService;
+	private final JWTUtil jwtUtil;
 
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private JWTUtil jwtUtil;
+	public SecurityConfig(Environment env, UserDetailsService userDetailsService, JWTUtil jwtUtil) {
+		this.env = env;
+		this.userDetailsService = userDetailsService;
+		this.jwtUtil = jwtUtil;
+	}
 
 	/* PERMITE OS SEGUINTES ENDPOINTS */
 	private static final String[] PUBLIC_MATCHERS = { 
