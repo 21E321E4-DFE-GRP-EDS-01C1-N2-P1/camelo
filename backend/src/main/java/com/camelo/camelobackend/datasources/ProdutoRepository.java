@@ -35,6 +35,12 @@ public class ProdutoRepository implements ProdutoPort {
     }
 
     @Override
+    public List<Produto> produtos() {
+        var produtosModel = (List<ProdutoModel>) data.findAll();
+        return produtosModel.stream().map(mapper::map).collect(Collectors.toList());
+    }
+
+    @Override
     public Produto obterPor(Long id) {
         var produtoLocalizado = data.findById(id).orElseThrow();
         return mapper.map(produtoLocalizado);

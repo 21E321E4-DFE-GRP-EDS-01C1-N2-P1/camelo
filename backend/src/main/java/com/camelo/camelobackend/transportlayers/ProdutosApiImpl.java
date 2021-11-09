@@ -1,6 +1,7 @@
 package com.camelo.camelobackend.transportlayers;
 
 import com.camelo.camelobackend.interactors.BuscarProdutoPorIdUseCase;
+import com.camelo.camelobackend.interactors.BuscarProdutosCategorizadoUseCase;
 import com.camelo.camelobackend.interactors.BuscarProdutosEmPromocaoUseCase;
 import com.camelo.camelobackend.interactors.CadastrarProdutoUseCase;
 import com.camelo.camelobackend.transportlayers.mapper.ProdutoResponseMapper;
@@ -28,11 +29,13 @@ public class ProdutosApiImpl implements ProdutosApi {
     private final CadastrarProdutoUseCase cadastrarProdutoUseCase;
     private final BuscarProdutoPorIdUseCase buscarProdutoPorIdUseCase;
     private final BuscarProdutosEmPromocaoUseCase produtosEmPromocaoUseCase;
+    private final BuscarProdutosCategorizadoUseCase produtosCategorizadoUseCase;
 
-    public ProdutosApiImpl(CadastrarProdutoUseCase cadastrarProdutoUseCase, BuscarProdutoPorIdUseCase buscarProdutoPorIdUseCase, BuscarProdutosEmPromocaoUseCase produtosEmPromocaoUseCase) {
+    public ProdutosApiImpl(CadastrarProdutoUseCase cadastrarProdutoUseCase, BuscarProdutoPorIdUseCase buscarProdutoPorIdUseCase, BuscarProdutosEmPromocaoUseCase produtosEmPromocaoUseCase, BuscarProdutosCategorizadoUseCase produtosCategorizadoUseCase) {
         this.cadastrarProdutoUseCase = cadastrarProdutoUseCase;
         this.buscarProdutoPorIdUseCase = buscarProdutoPorIdUseCase;
         this.produtosEmPromocaoUseCase = produtosEmPromocaoUseCase;
+        this.produtosCategorizadoUseCase = produtosCategorizadoUseCase;
         this.mapper = ProdutoResponseMapper.INSTANCE;
     }
 
@@ -67,7 +70,7 @@ public class ProdutosApiImpl implements ProdutosApi {
 
     @Override
     public ResponseEntity<List<ProdutoCategorizado>> produtosCategorizadoGet() {
-
-        return null;
+        var response = produtosCategorizadoUseCase.executar();
+        return ResponseEntity.ok(response);
     }
 }

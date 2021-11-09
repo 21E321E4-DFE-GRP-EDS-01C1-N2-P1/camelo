@@ -30,4 +30,15 @@ public class ControllerAdvicer {
         response.setMensagem(e.getMessage());
         return response;
     }
+
+    @ResponseBody
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Error dataIntegrityViolationException(Exception e) {
+        var response = new Error();
+        response.setMensagem(e.getMessage());
+        return response;
+    }
+
+
 }

@@ -8,5 +8,6 @@ public interface ProdutoPort {
 
     Produto cadastra(Produto produto);
     List<Produto> emPromocao();
+    List<Produto> produtos();
     Produto obterPor(Long id);
 }

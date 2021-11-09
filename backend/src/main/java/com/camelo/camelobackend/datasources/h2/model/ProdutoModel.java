@@ -23,7 +23,7 @@ public class ProdutoModel {
 
     private Long desconto;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "PRODUTO_CATEGORIAS",
             joinColumns = @JoinColumn(name = "produto_id"),

@@ -23,9 +23,11 @@ export default function SignUp() {
       name,
       email,
       password
+    }).catch((err) => {
+      console.log(err.response.status)
     });
 
-    console.log(response.status);
+    
 
   }
 

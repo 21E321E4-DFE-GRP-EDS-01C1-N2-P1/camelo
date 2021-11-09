@@ -143,8 +143,10 @@ components:
         desconto:
           format: int32
           type: integer
-        categoria:
-          type: object
+        categorias:
+          type: array
+          items:
+            $ref: '#/components/schemas/Categoria'
           properties:
             id:
               format: int32
@@ -152,14 +154,18 @@ components:
             descricao:
               type: string
       example:
-        id: 1
-        nome: casaco
-        url: casaco.com
-        preco: 99.99
-        desconto: 20
+        id: 23
+        nome: some text
+        url: some text
+        preco: 75.52
+        desconto: 53
         categoria:
-          id: 1
-          descricao: TODOS
+          -
+            id: 38
+            descricao: some text
+          -
+            id: 66
+            descricao: some text
   responses:
     ProdutosEmPromocao:
       content:
