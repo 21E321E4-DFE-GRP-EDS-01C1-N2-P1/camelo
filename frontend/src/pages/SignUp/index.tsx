@@ -2,8 +2,33 @@ import { Container, Content, Form } from "./styles";
 import { Link } from "react-router-dom";
 
 import LogoImg from "../../assets/logo.svg";
+import { FormEvent, useState } from "react";
+import api from "../../services/api";
+
+interface User {
+  username: string;
+  email: string;
+  password: string;
+}
 
 export default function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function handleCreateAccount(e: FormEvent) {
+    e.preventDefault();
+
+    const response = await api.post('/user', {
+      name,
+      email,
+      password
+    });
+
+    console.log(response.status);
+
+  }
+
   return (
     <Container>
       <Content>
@@ -14,11 +39,11 @@ export default function SignUp() {
         </div>
 
         <Form>
-          <input type="text" id="user" placeholder="Usuário" />
-          <input type="email" id="email" placeholder="Email" />
-          <input type="password" id="password" placeholder="Senha" />
+          <input type="text" id="username" placeholder="Usuário" onChange={e => setName(e.target.value)} />
+          <input type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
+          <input type="password" id="password" placeholder="Senha" onChange={e => setPassword(e.target.value)} />
 
-          <button type="submit">Cadastrar</button>
+          <button type="submit" onClick={handleCreateAccount}>Cadastrar</button>
 
           <div className="auth-footer">
             <p>Já tem acesso?</p>
