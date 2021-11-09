@@ -19,16 +19,15 @@ export default function SignUp() {
   async function handleCreateAccount(e: FormEvent) {
     e.preventDefault();
 
-    const response = await api.post('/user', {
+    await api.post('/user', {
       name,
       email,
       password
+    }).then(response => {
+      console.log(response.status);
     }).catch((err) => {
       console.log(err.response.status)
     });
-
-    
-
   }
 
   return (

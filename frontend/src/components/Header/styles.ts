@@ -57,6 +57,7 @@ export const NavigationArea = styled.div`
 
   nav {
     display: flex;
+    align-items: center;
 
     input {
       margin: 0 1rem;
@@ -64,6 +65,16 @@ export const NavigationArea = styled.div`
 
     a {
       color: var(--blue);
+    }
+
+    svg {
+      margin-left: .7rem;
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: opacity(0.6);
+      }
     }
   }
 

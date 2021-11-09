@@ -1,8 +1,8 @@
-import {FiUser, FiShoppingCart} from "react-icons/fi";
-import {Link} from "react-router-dom";
-import {Container, Content, NavigationArea, ProfileArea} from "./styles";
+import { FiUser, FiShoppingCart, FiLogOut } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { Container, Content, NavigationArea, ProfileArea } from "./styles";
 import logoImg from "../../assets/logo.svg";
-import {Banner} from "../Banner";
+import { Banner } from "../Banner";
 
 export function Header() {
     return (
@@ -29,6 +29,7 @@ export function Header() {
                         </ul>
                         <input type="text" placeholder="Buscar produto"/>
                         <button>Buscar</button>
+                        <FiLogOut size={22}/>
                     </nav>
                 </NavigationArea>
             </Content>

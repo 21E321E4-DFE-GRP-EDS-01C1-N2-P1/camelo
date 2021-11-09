@@ -1,15 +1,16 @@
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import { GlobalStyle } from "./styles/global";
 
 import Routes from "./routes";
+import history from "./history";
 import {ProductsProvider} from "./hooks/UseProducts";
 
 function App() {
   return (
     <ProductsProvider>
-      <BrowserRouter>
+      <Router history={history}>
         <Routes />
-      </BrowserRouter>
+      </Router>
       <GlobalStyle />
     </ProductsProvider>
   );
