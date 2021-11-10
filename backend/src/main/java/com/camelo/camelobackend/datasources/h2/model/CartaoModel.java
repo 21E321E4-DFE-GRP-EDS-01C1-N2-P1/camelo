@@ -19,7 +19,7 @@ public class CartaoModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    private CartaoModel cartao;
 
     public Long getId() {
         return id;
@@ -61,11 +61,11 @@ public class CartaoModel {
         this.cvv = cvv;
     }
 
-    public UserModel getUser() {
-        return user;
+    public CartaoModel getCartao() {
+        return cartao;
     }
 
-    public void setUser(UserModel user) {
-        this.user = user;
+    public void setCartao(CartaoModel cartao) {
+        this.cartao = cartao;
     }
 }
