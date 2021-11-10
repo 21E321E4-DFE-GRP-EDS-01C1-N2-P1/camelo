@@ -9,6 +9,7 @@ import com.camelo.camelobackend.transportlayers.openapi.api.ProdutosApi;
 import com.camelo.camelobackend.transportlayers.openapi.model.Produto;
 import com.camelo.camelobackend.transportlayers.openapi.model.ProdutoCategorizado;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,7 @@ public class ProdutosApiImpl implements ProdutosApi {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasAnyRole('CLIENTE')")
     @Override
     public ResponseEntity<Produto> produtosPost(@RequestBody Produto produto) {
         var request = mapper.map(produto);
