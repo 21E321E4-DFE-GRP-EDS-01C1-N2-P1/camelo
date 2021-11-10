@@ -77,6 +77,45 @@ paths:
           $ref: '#/components/responses/InfoErro'
         '500':
           $ref: '#/components/responses/InfoErro'
+  /pagamento:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cartao'
+            examples:
+              cartao:
+                value:
+                  numero: some text
+                  nome: some text
+                  vencimento: some text
+                  cvv: 5
+        required: true
+      parameters:
+        -
+          examples:
+            token jwt:
+              value: >-
+                Bearer
+                eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZ21haWwuY29tIiwiZXhwIjoxNjM2NTg3OTAyfQ.osNc62Q6x-awAxXjeSwKMBaLS2TPD0S0sGicAuNhAxnDJBtALaaoNbIfkD8i5WFUO7s3rtuEu0Yr66ZeKGnyTg
+          name: Authorization
+          description: ''
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '201':
+          $ref: '#/components/responses/CategoriasResponse'
+        '400':
+          $ref: '#/components/responses/InfoErro'
+        '401':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
 components:
   schemas:
     Produto:
@@ -166,6 +205,25 @@ components:
           -
             id: 66
             descricao: some text
+    Cartao:
+      title: Root Type for Cartao
+      description: ''
+      type: object
+      properties:
+        numero:
+          type: string
+        nome:
+          type: string
+        vencimento:
+          type: string
+        cvv:
+          format: int32
+          type: integer
+      example:
+        numero: '123456'
+        nome: nome
+        vencimento: 12/30
+        cvv: 123
   responses:
     ProdutosEmPromocao:
       content:
@@ -259,4 +317,17 @@ components:
                   categoria:
                     id: 31
                     descricao: some text
+      description: ''
+    CartaoResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Cartao'
+          examples:
+            cartaoResponse:
+              value:
+                numero: some text
+                nome: some text
+                vencimento: some text
+                cvv: 3
       description: ''

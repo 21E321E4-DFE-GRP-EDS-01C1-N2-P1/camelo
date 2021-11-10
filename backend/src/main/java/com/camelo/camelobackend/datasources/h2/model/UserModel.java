@@ -3,6 +3,8 @@ package com.camelo.camelobackend.datasources.h2.model;
 import javax.persistence.*;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
+
 @Entity(name = "USER")
 public class UserModel {
 
@@ -17,13 +19,16 @@ public class UserModel {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="USER_ROLE",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private List<RoleModel> roles;
+
+    @OneToMany(mappedBy = "cartao", cascade = ALL, fetch = FetchType.EAGER)
+    private List<CartaoModel> cartoes;
 
     public Long getId() {
         return id;
@@ -63,5 +68,13 @@ public class UserModel {
 
     public void setRoles(List<RoleModel> roles) {
         this.roles = roles;
+    }
+
+    public List<CartaoModel> getCartoes() {
+        return cartoes;
+    }
+
+    public void setCartoes(List<CartaoModel> cartoes) {
+        this.cartoes = cartoes;
     }
 }

@@ -1,9 +1,22 @@
 package com.camelo.camelobackend.transportlayers.dto;
 
-public class UserNewDTO {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
+public class UserNewDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
     private String name;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Email(message = "Email inválido")
     private String email;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
     private String password;
 
     public String getName() {

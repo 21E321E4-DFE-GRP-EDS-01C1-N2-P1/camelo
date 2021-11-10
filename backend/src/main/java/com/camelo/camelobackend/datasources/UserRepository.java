@@ -19,7 +19,7 @@ public class UserRepository implements UserPort {
 
     @Override
     public User buscarPor(String email) {
-        var profileModel = userData.findByEmail(email);
+        var profileModel = userData.buscarPorEmail(email);
         return mapper.map(profileModel);
     }
 
