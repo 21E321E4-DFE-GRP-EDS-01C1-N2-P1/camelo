@@ -1,21 +1,18 @@
-import { Container, Content, Form } from "./styles";
+import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 import LogoImg from "../../assets/logo.svg";
-import { FormEvent, useEffect, useState } from "react";
-import api from "../../services/api";
-import history from "../../history";
 
-interface User {
-  email: string;
-  password: string;
-  logedIn: boolean;
-}
+import { Container, Content, Form } from "./styles";
+import { useProfile } from "../../hooks/UseProfile";
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logedIn, setLogedIn] = useState(false);
+
+  const { signIn } = useProfile();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,27 +25,25 @@ export default function SignIn() {
   async function handleSignIn(e: FormEvent) {
     e.preventDefault();
 
-    await api.post('/login', {
-      email,
-      password
-    }).then(response => {
-      if (response.status === 200) {
-        setLogedIn(true);
-        const { authorization } = response.headers;
-        localStorage.setItem('token', authorization);
-        history.push('/home');
-      }
-      console.log(logedIn);
-    }).catch(err => {
-      if(err.response.status === 401) {
-        alert('Usuário ou senha inválidos');
-        localStorage.removeItem('token');
-      }
-    });
+    if(!email || !password) {
+      toast.error('Preencha todos os campos para continuar');
+    } else {
+      await signIn({ email, password });
+    }
   }
 
   return (
     <Container>
+      <ToastContainer
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Content>
         <div className="heading">
           <img src={LogoImg} alt="Logo Dashboard" />

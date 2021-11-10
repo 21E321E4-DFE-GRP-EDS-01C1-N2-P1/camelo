@@ -1,17 +1,16 @@
-import { Container, Content, Form } from "./styles";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import LogoImg from "../../assets/logo.svg";
-import { FormEvent, useState } from "react";
-import api from "../../services/api";
+import { useProfile } from "../../hooks/UseProfile";
 
-interface User {
-  username: string;
-  email: string;
-  password: string;
-}
+import { Container, Content, Form } from "./styles";
 
 export default function SignUp() {
+  const { createUser } = useProfile();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,19 +18,25 @@ export default function SignUp() {
   async function handleCreateAccount(e: FormEvent) {
     e.preventDefault();
 
-    await api.post('/user', {
-      name,
-      email,
-      password
-    }).then(response => {
-      console.log(response.status);
-    }).catch((err) => {
-      console.log(err.response.status)
-    });
+    if(!email || !password || !name) {
+      toast.error('Preencha todos os campos para continuar');
+    } else {
+      await createUser({ name, email, password });
+    } 
   }
 
   return (
     <Container>
+      <ToastContainer
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Content>
         <div className="heading">
           <img src={LogoImg} alt="Logo Dashboard" />
