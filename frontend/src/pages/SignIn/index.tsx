@@ -26,7 +26,7 @@ export default function SignIn() {
     e.preventDefault();
 
     if(!email || !password) {
-      toast.error('Preencha todos os campos para continuar');
+      toast.warning('Preencha todos os campos para continuar');
     } else {
       await signIn({ email, password });
     }
