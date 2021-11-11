@@ -23,8 +23,8 @@ public class AdicionarFormaDePagamentoUseCase {
 
         if (Objects.nonNull(userSS)) {
             var usuario = userPort.buscarPor(userSS.getUsername());
+            cartaoDomain.setUser(usuario);
 
-            cartaoDomain.adicionar(usuario);
             var cartaoSalvo = cartaoPort.salvar(cartaoDomain);
 
             usuario.adicionarCartao(cartaoSalvo);

@@ -9,15 +9,17 @@ public class Cartao {
     private final Integer cvv;
     private User user;
 
-    public Cartao(Long id, String numero, String nome, String vencimento, Integer cvv) {
+
+    public Cartao(Long id, String numero, String nome, String vencimento, Integer cvv, User user) {
         this.id = id;
         this.numero = numero;
         this.nome = nome;
         this.vencimento = vencimento;
         this.cvv = cvv;
+        this.user = user;
     }
 
-    public void adicionar(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

@@ -11,14 +11,15 @@ import org.springframework.stereotype.Repository;
 public class CartaoRepository implements CartaoPort {
 
     private final CartaoData data;
+    private final CartaoModelMapper mapper;
 
     public CartaoRepository(CartaoData data) {
         this.data = data;
+        this.mapper = Mappers.getMapper(CartaoModelMapper.class);
     }
 
     @Override
     public Cartao salvar(Cartao cartao) {
-        var mapper = Mappers.getMapper(CartaoModelMapper.class);
         var cartaoModel = mapper.map(cartao);
         var cartaoSalvo = data.save(cartaoModel);
         return mapper.map(cartaoSalvo);
