@@ -10,6 +10,7 @@ import { useProfile } from "../../hooks/UseProfile";
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // eslint-disable-next-line
   const [logedIn, setLogedIn] = useState(false);
 
   const { signIn } = useProfile();

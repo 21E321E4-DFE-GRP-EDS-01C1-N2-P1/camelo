@@ -8,6 +8,9 @@ import { useProducts } from "../../hooks/UseProducts";
 import { DashboardHeader, DashboardMain, Container } from "./styles";
 import { Products } from "../Products";
 
+// eslint-disable-next-line
+import notFound from "../../assets/not-found.jpg";
+
 interface ProductFormatted extends Product {
     priceFormatted: string;
     promotionPriceFormatted: string;
@@ -15,34 +18,37 @@ interface ProductFormatted extends Product {
 
 export function Dashboard() {
     const { products, productsOnSale } = useProducts();
-    const [ProductsOnSaleDTO, setProductsOnSaleDTO] = useState<ProductFormatted[]>([]);
-    const [ProductsDTO, setProductsDTO] = useState<ProductFormatted[]>([]);
+    const [productsOnSaleDTO, setProductsOnSaleDTO] = useState<ProductFormatted[]>([]);
+    const [productsDTO, setProductsDTO] = useState<ProductFormatted[]>([]);
 
     useEffect(() => {
-        const newProductOnSale = productsOnSale.map((product) => ({
+        const newProductOnSale = productsOnSale.map(product => ({
             ...product,
-            priceFormatted: formatPrice(product.price),
-            promotionPriceFormatted: formatPrice(product.promotionPrice)
+            priceFormatted: formatPrice(product.preco),
+            promotionPriceFormatted: formatPrice(product.preco - (product.preco * (Number(product.desconto) / 100)))
         }));
 
-        const newProduct = products.map((product) => ({
+        const newProduct = products.map(product => ({
             ...product,
-            priceFormatted: formatPrice(product.price),
-            promotionPriceFormatted: formatPrice(product.promotionPrice)
+            priceFormatted: formatPrice(product.preco),
+            promotionPriceFormatted: formatPrice(product.preco - (product.preco * (Number(product.desconto) / 100)))
         }));
         setProductsOnSaleDTO(newProductOnSale);
         setProductsDTO(newProduct);
-    }, [])
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Container>
             <DashboardHeader>
-                {ProductsOnSaleDTO.map(product => (
+                {productsOnSaleDTO.map(product => (
                     <ProductHeader
-                        name={product.name}
-                        image={product.img}
+                        key={product.id}
+                        name={product.nome}
+                        // image={notFound}
                         price={product.priceFormatted}
                         promotionPrice={product.promotionPriceFormatted}
+                        promotion={Number(product.desconto)}
                     />
                 ))}
             </DashboardHeader>
@@ -50,15 +56,28 @@ export function Dashboard() {
             <h2>BEST SELLER</h2>
 
             <DashboardMain>
-                {ProductsDTO.map(product => (
+                {productsDTO.map(product => (
                     <Products
-                        name={product.name}
-                        image={product.img}
-                        price={product.priceFormatted}
+                        key={product.id}
+                        name={product.nome}
+                        // image={notFound}
                         promotionPrice={product.promotionPriceFormatted}
+                        price={product.priceFormatted}
                     />
                 ))}
             </DashboardMain>
+
+            {/* <DashboardMain>
+                {ProductsDTO.map(product => (
+                    <Products
+                        key={product.id}
+                        name={product.nome}
+                        image={""}
+                        promotionPrice={product.promotionPriceFormatted}
+                        price={product.priceFormatted}
+                    />
+                ))}
+            </DashboardMain> */}
         </Container>
     );
 }
