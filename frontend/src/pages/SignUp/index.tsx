@@ -19,7 +19,7 @@ export default function SignUp() {
     e.preventDefault();
 
     if(!email || !password || !name) {
-      toast.error('Preencha todos os campos para continuar');
+      toast.warning('Preencha todos os campos para continuar');
     } else {
       await createUser({ name, email, password });
     } 

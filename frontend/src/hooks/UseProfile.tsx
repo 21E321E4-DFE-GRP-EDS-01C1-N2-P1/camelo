@@ -49,9 +49,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
         history.push('/home');
     }).catch(err => {
-        if(err.response.status === 401) {
-          toast.error("Usuário ou senha incorretos");
-        }
+        toast.error("Usuário ou senha incorretos");
         localStorage.removeItem('token');
     });
   }
