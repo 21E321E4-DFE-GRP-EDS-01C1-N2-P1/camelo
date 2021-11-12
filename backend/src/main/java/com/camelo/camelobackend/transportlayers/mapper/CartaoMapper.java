@@ -7,4 +7,6 @@ import org.mapstruct.Mapper;
 public interface CartaoMapper {
 
      com.camelo.camelobackend.domain.Cartao map(Cartao cartao);
+     Cartao map(com.camelo.camelobackend.domain.Cartao cartao);
+
 }

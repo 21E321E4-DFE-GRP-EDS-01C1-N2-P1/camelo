@@ -78,6 +78,23 @@ paths:
         '500':
           $ref: '#/components/responses/InfoErro'
   /pagamento:
+    get:
+      parameters:
+        -
+          examples:
+            Bearer token:
+              value: >-
+                Bearer
+                eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZ21haWwuY29tIiwiZXhwIjoxNjM2NTk0ODM2fQ.VkshuIq_WYWjTFgTFZ_N5JY5n1fDFmg4dXuR1B198u4UCAReBpFI-miJWBy4ygGtLBpp9PxoAR7MAlazIX0gfA
+          name: Authorization
+          description: ''
+          schema:
+            type: string
+          in: header
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/CartoesResponse'
     post:
       requestBody:
         content:
@@ -106,8 +123,8 @@ paths:
           in: header
           required: true
       responses:
-        '201':
-          $ref: '#/components/responses/CategoriasResponse'
+        '200':
+          $ref: '#/components/responses/CartaoResponse'
         '400':
           $ref: '#/components/responses/InfoErro'
         '401':
@@ -330,4 +347,25 @@ components:
                 nome: some text
                 vencimento: some text
                 cvv: 3
+      description: ''
+    CartoesResponse:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Cartao'
+          examples:
+            cartao:
+              value:
+                -
+                  numero: some text
+                  nome: some text
+                  vencimento: some text
+                  cvv: 71
+                -
+                  numero: some text
+                  nome: some text
+                  vencimento: some text
+                  cvv: 64
       description: ''

@@ -1,6 +1,7 @@
 package com.camelo.camelobackend.datasources.h2.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -27,7 +28,7 @@ public class UserModel {
     )
     private List<RoleModel> roles;
 
-    @OneToMany(mappedBy = "cartao", cascade = ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = ALL, fetch = FetchType.EAGER)
     private List<CartaoModel> cartoes;
 
     public Long getId() {

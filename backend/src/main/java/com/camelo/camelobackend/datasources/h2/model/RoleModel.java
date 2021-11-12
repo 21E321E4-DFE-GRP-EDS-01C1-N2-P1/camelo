@@ -1,9 +1,9 @@
 package com.camelo.camelobackend.datasources.h2.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "ROLE")
 public class RoleModel {
@@ -13,6 +13,10 @@ public class RoleModel {
     private Long id;
 
     private String name;
+
+    @JsonIgnore
+    @ManyToMany
+    private List<UserModel> userModels;
 
     public Long getId() {
         return id;
@@ -28,5 +32,13 @@ public class RoleModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<UserModel> getUserModels() {
+        return userModels;
+    }
+
+    public void setUserModels(List<UserModel> userModels) {
+        this.userModels = userModels;
     }
 }
