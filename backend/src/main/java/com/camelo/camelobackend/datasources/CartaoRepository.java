@@ -11,6 +11,9 @@ import com.camelo.camelobackend.ports.CartaoPort;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 public class CartaoRepository implements CartaoPort {
 
@@ -29,6 +32,13 @@ public class CartaoRepository implements CartaoPort {
         var cartaoModel = getCartaoModel(cartao);
         var cartaoSalvo = data.save(cartaoModel);
         return getCartao(cartaoSalvo);
+    }
+
+    @Override
+    public List<Cartao> buscarPor(Long id) {
+        var userModel = userData.findById(id).orElseThrow();
+        var response = data.findCartaoModelByUser(userModel);
+        return response.stream().map(this::getCartao).collect(Collectors.toList());
     }
 
     private CartaoModel getCartaoModel(Cartao cartao) {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/")
@@ -41,9 +42,11 @@ public class PagamentoApiImpl implements PagamentoApi {
         return ResponseEntity.ok(response);
     }
 
+    @PreAuthorize("hasAnyRole('CLIENTE')")
     public ResponseEntity<List<Cartao>> pagamentoGet(@RequestHeader(value="Authorization") String authorization) {
-        listarPagamentosDoUsuarioUseCase.executar();
-        return null;
+        var cartoes = listarPagamentosDoUsuarioUseCase.executar();
+        var response = cartoes.stream().map(mapper::map).collect(Collectors.toList());
+        return ResponseEntity.ok(response);
     }
 
 }
