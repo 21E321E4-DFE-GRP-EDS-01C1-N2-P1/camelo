@@ -2,10 +2,6 @@ import { ReactNode, createContext, useState, useContext, useEffect } from "react
 
 import { Product } from "../types";
 
-// import produtoHeader1 from "../assets/bolsa.png";
-// import produtoHeader2 from "../assets/tenis1.png";
-// import produtoHeader3 from "../assets/tenis2.png";
-
 import api from "../services/api";
 import { formatPrice } from "../util/format";
 
@@ -32,23 +28,23 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
 
     useEffect(() => {
         async function loadProducts() {
-            const response = await api.get<ProductFormatted[]>('/produtos/categorizado');
-            const responseOnSale = await api.get<ProductFormatted[]>('/produtos/promocao');
+            const responseProducts = await api.get<ProductFormatted[]>('/produtos/categorizado');
+            const responseProductsOnSale = await api.get<ProductFormatted[]>('/produtos/promocao');
       
-            const data = response.data.map(product => ({
+            const dataProducts = responseProducts.data.map(product => ({
               ...product,
               priceFormatted: formatPrice(product.preco),
               promotionPriceFormatted: formatPrice(product.preco - (product.preco * (Number(product.desconto) / 100)))
             }));            
             
-            const dataOnSale = responseOnSale.data.map(product => ({
+            const dataProductsOnSale = responseProductsOnSale.data.map(product => ({
               ...product,
               priceFormatted: formatPrice(product.preco),
               promotionPriceFormatted: formatPrice(product.preco - (product.preco * (Number(product.desconto) / 100)))
             }));
       
-            setProducts(data);
-            setProductsOnSale(dataOnSale);
+            setProducts(dataProducts);
+            setProductsOnSale(dataProductsOnSale);
           }
       
           loadProducts();
