@@ -1,9 +1,6 @@
 package com.camelo.camelobackend.domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class User {
 
@@ -11,7 +8,7 @@ public class User {
     private final String name;
     private final String email;
     private String password;
-    private final Set<Role> roles;
+    private Set<Role> roles;
     private List<Cartao> cartoes;
 
     public User(Long id, String name, String email, String password) {
@@ -32,6 +29,9 @@ public class User {
     }
 
     public void adicionarCartao(Cartao cartao) {
+        if (Objects.isNull(cartoes))
+            cartoes = new ArrayList<>();
+
         this.cartoes.add(cartao);
     }
 
@@ -57,5 +57,13 @@ public class User {
 
     public List<Cartao> getCartoes() {
         return cartoes;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
     }
 }

@@ -18,7 +18,7 @@ public class AdicionarFormaDePagamentoUseCase {
         this.cartaoPort = cartaoPort;
     }
 
-    public void executar(Cartao cartaoDomain) {
+    public Cartao executar(Cartao cartaoDomain) {
         var userSS = UserService.authenticated();
 
         if (Objects.nonNull(userSS)) {
@@ -29,7 +29,9 @@ public class AdicionarFormaDePagamentoUseCase {
 
             usuario.adicionarCartao(cartaoSalvo);
 
-            userPort.salvar(usuario);
+            return cartaoSalvo;
         }
+
+        throw new RuntimeException("ERRO AO SALVAR CARTAO");
     }
 }

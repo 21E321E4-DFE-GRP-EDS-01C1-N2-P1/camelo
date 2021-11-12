@@ -29,7 +29,7 @@ public class UserModel {
     private List<RoleModel> roles;
 
     @OneToMany(mappedBy = "user", cascade = ALL, fetch = FetchType.EAGER)
-    private List<CartaoModel> cartoes = new ArrayList<>();
+    private List<CartaoModel> cartoes;
 
     public Long getId() {
         return id;
