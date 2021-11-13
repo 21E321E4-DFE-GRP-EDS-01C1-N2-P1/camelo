@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import logoImg from "../../assets/logo.svg";
 import { useProfile } from "../../hooks/UseProfile";
 
-import { Container, Content, NavigationArea, ProfileArea } from "./styles";
+import { 
+    Container, 
+    Content, 
+    NavigationArea, 
+    ProfileArea,
+    NavigationButton
+} from "./styles";
 
 export function Header() {
     const { signOut } = useProfile();
@@ -12,16 +18,20 @@ export function Header() {
     return (
         <Container>
             <Content>
-                <ProfileArea>
-                    <section>
-                        <FiUser size={15}/>
-                        <span>Profile</span>
-                    </section>
+                <ProfileArea>                
+                    <NavigationButton>
+                        <Link to="/profile"> 
+                            <FiUser size={15}/>
+                            <span>Profile</span>
+                        </Link>
+                    </NavigationButton>
 
-                    <section>
-                        <FiShoppingCart size={15}/>
-                        <span>Items</span>
-                    </section>
+                    <NavigationButton>
+                        <Link to="/cart">
+                            <FiShoppingCart size={15}/>
+                            <span>Items</span>
+                        </Link>
+                    </NavigationButton>                                                        
                 </ProfileArea>
 
                 <NavigationArea>

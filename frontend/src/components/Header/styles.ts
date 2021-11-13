@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.header`
   background: var(--background);
@@ -38,6 +39,33 @@ export const ProfileArea = styled.div`
       color: var(--text);
     }
   }
+`;
+
+export const NavigationButton = styled.section`
+    display: flex;
+    align-items: center;
+
+    & + section {
+      margin-left: 1rem;
+    }
+
+    span {
+      margin-left: 1rem;
+      font-size: .9rem;
+    }
+
+    svg {
+      color: var(--text);
+    }
+
+    :hover {
+      filter: opacity(0.6);
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+    }
 `;
 
 export const NavigationArea = styled.div`
