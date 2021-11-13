@@ -1,4 +1,4 @@
-import {Container, Product} from "./styles";
+import { Product } from "./styles";
 
 import notFound from "../../assets/not-found.jpg";
 
@@ -7,19 +7,21 @@ interface ProductProps {
     image?: string;
     price: string;
     promotionPrice: string;
+    promotion?: number;
 }
 
-export function Products({ name, image, price, promotionPrice }: ProductProps) {
+export function Products({ name, image, price, promotionPrice, promotion }: ProductProps) {
     return (
-        <Container>
+        <>
             <Product>
                 <img src={image ? image : notFound} alt=""/>
                 <p className="title">{name}</p>
                 <div>
-                    <p>{promotionPrice}</p>
-                    <p>{price}</p>
+                    <p className={`${!promotion ? '' : 'promocao'}`}>{price}</p>
+                    <p className="desconto">{!promotion ? '' : promotion + '% off'}</p>
+                    <p>{!promotion ? '' : promotionPrice}</p>
                 </div>
             </Product>
-        </Container>
+        </>
     );
 }

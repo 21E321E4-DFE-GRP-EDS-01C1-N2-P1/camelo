@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray-light: #f6f7f8;
     --text: #373737;
     --background-login: #363740;
-    --text: #252733;
+    --text2: #252733;
   }
 
   * {

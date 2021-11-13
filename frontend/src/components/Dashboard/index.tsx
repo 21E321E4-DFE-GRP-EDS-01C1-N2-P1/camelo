@@ -14,7 +14,7 @@ export function Dashboard() {
                     <ProductHeader
                         key={product.id}
                         name={product.nome}
-                        image={""}
+                        image={product.url}
                         price={product.priceFormatted}
                         promotionPrice={product.promotionPriceFormatted}
                         promotion={Number(product.desconto)}
@@ -29,9 +29,10 @@ export function Dashboard() {
                     <Products
                         key={product.id}
                         name={product.nome}
-                        image={""}
+                        image={product.url}
                         promotionPrice={product.promotionPriceFormatted}
                         price={product.priceFormatted}
+                        promotion={product.desconto}
                     />
                 ))}
             </DashboardMain>

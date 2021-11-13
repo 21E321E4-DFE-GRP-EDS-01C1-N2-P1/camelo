@@ -21,7 +21,9 @@ export const Header = styled.div`
     
     p {
       text-decoration: line-through;
-      color: var(--gray-dark);
+      color: var(--text);
+      font-weight: bold;
+      font-size: 1.1rem;
       
       & + p {
         margin-left: 1rem;
@@ -36,7 +38,7 @@ export const Header = styled.div`
 export const Footer = styled.div`
   p {
     font-weight: bold;
-    color: var(--blue);
-    font-size: 1.2rem;
+    color: var(--text2);
+    font-size: 1.4rem;
   }
 `;
