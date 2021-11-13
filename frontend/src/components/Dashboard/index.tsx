@@ -1,48 +1,23 @@
-import { useEffect, useState } from "react";
-
-import { Product } from "../../types";
-import { formatPrice } from "../../util/format";
 import { ProductHeader } from "../ProductHeader";
 import { useProducts } from "../../hooks/UseProducts";
 
 import { DashboardHeader, DashboardMain, Container } from "./styles";
 import { Products } from "../Products";
 
-interface ProductFormatted extends Product {
-    priceFormatted: string;
-    promotionPriceFormatted: string;
-}
-
 export function Dashboard() {
     const { products, productsOnSale } = useProducts();
-    const [ProductsOnSaleDTO, setProductsOnSaleDTO] = useState<ProductFormatted[]>([]);
-    const [ProductsDTO, setProductsDTO] = useState<ProductFormatted[]>([]);
-
-    useEffect(() => {
-        const newProductOnSale = productsOnSale.map((product) => ({
-            ...product,
-            priceFormatted: formatPrice(product.price),
-            promotionPriceFormatted: formatPrice(product.promotionPrice)
-        }));
-
-        const newProduct = products.map((product) => ({
-            ...product,
-            priceFormatted: formatPrice(product.price),
-            promotionPriceFormatted: formatPrice(product.promotionPrice)
-        }));
-        setProductsOnSaleDTO(newProductOnSale);
-        setProductsDTO(newProduct);
-    }, [])
 
     return (
         <Container>
             <DashboardHeader>
-                {ProductsOnSaleDTO.map(product => (
+                {productsOnSale.map(product => (
                     <ProductHeader
-                        name={product.name}
-                        image={product.img}
+                        key={product.id}
+                        name={product.nome}
+                        image={product.url}
                         price={product.priceFormatted}
                         promotionPrice={product.promotionPriceFormatted}
+                        promotion={Number(product.desconto)}
                     />
                 ))}
             </DashboardHeader>
@@ -50,12 +25,14 @@ export function Dashboard() {
             <h2>BEST SELLER</h2>
 
             <DashboardMain>
-                {ProductsDTO.map(product => (
+                {products.map(product => (
                     <Products
-                        name={product.name}
-                        image={product.img}
-                        price={product.priceFormatted}
+                        key={product.id}
+                        name={product.nome}
+                        image={product.url}
                         promotionPrice={product.promotionPriceFormatted}
+                        price={product.priceFormatted}
+                        promotion={product.desconto}
                     />
                 ))}
             </DashboardMain>

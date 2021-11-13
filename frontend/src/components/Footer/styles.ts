@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.footer`
   background: var(--background);
-  position:fixed;
+  /* position:fixed; */
   bottom:0;
   width:100%;
 `;

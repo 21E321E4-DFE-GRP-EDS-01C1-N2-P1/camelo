@@ -25,6 +25,7 @@ export const UserContext = createContext<UserContextData>({} as UserContextData)
 
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User>({} as User);
+  // eslint-disable-next-line
   const [logedIn, setLogedIn] = useState(false);
 
   async function createUser(user: User) {

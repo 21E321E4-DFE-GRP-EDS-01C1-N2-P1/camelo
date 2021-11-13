@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     --gray-light: #f6f7f8;
     --text: #373737;
     --background-login: #363740;
-    --text: #252733;
+    --text2: #252733;
   }
 
   * {
@@ -30,16 +30,16 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  header {
-    @media(max-width: 720px) {
-      display: none;
-    }
+  @media(max-width: 720px) {
+      header {
+        display: none;
+      }
   }
 
-  footer {
-    @media(min-width: 720px) {
-      display: none;
-    }
+  @media(min-width: 720px) {
+      footer {
+        display: none;
+      }
   }
 
   body {
