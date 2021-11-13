@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Product = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: .3rem;
   border: 1px solid rgba(0, 0, 0, .125);
   margin: .8rem;
@@ -25,7 +28,7 @@ export const Product = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem 1rem;
+    padding: 0 1rem;
 
     p {
       font-size: 1rem;
@@ -45,5 +48,9 @@ export const Product = styled.section`
     .desconto {
       color: var(--red);
     }
+  }
+
+  button {
+    margin: .5rem 0 1rem;
   }
 `;

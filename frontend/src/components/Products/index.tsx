@@ -1,6 +1,7 @@
 import { Product } from "./styles";
 
 import notFound from "../../assets/not-found.jpg";
+import { ButtonCart } from "../ButtonCart";
 
 interface ProductProps {
     name: string;
@@ -21,6 +22,7 @@ export function Products({ name, image, price, promotionPrice, promotion }: Prod
                     <p className="desconto">{!promotion ? '' : promotion + '% off'}</p>
                     <p>{!promotion ? '' : promotionPrice}</p>
                 </div>
+                <ButtonCart />
             </Product>
         </>
     );

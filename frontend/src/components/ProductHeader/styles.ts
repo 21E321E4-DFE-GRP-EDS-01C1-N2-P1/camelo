@@ -36,6 +36,11 @@ export const Header = styled.div`
 `;
 
 export const Footer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
   p {
     font-weight: bold;
     color: var(--text2);
