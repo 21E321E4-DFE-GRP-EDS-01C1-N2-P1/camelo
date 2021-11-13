@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const BannerArea = styled.div`
+  @media(max-width: 720px) {
+    display: none;
+  }
+
   background-size: cover;
   background-position: center;
   width: 100%;

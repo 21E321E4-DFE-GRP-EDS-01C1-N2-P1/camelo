@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Cart from "../pages/Cart";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import { Profile } from "../pages/Profile";
 
 export default function Routes() {
   return (
@@ -11,6 +12,7 @@ export default function Routes() {
       <Route path="/signup" exact component={SignUp} />
       <Route path="/home" exact component={Home} />
       <Route path="/cart" component={Cart} />
+      <Route path="/profile" component={Profile } />
     </Switch>
   );
 }
