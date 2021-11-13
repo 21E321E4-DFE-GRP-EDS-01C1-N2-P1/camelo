@@ -30,16 +30,16 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  header {
-    @media(max-width: 720px) {
-      display: none;
-    }
+  @media(max-width: 720px) {
+      header {
+        display: none;
+      }
   }
 
-  footer {
-    @media(min-width: 720px) {
-      display: none;
-    }
+  @media(min-width: 720px) {
+      footer {
+        display: none;
+      }
   }
 
   body {
