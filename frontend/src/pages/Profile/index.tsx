@@ -1,9 +1,47 @@
+import { useEffect, useState } from "react";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { Card, Container } from "./styles";
 
+interface Usuario {
+  id: number;
+  name: string;
+  email: string;
+}
+
+
 export function Profile() {
+
+  const [usuario, setUsuario] = useState<Usuario>();
+
+  function converter(json:string):Usuario{
+
+    const value = JSON.parse(json, (key, value) => {
+      if (typeof value === 'string') {
+        return value;
+      }
+      return value;
+    });
+
+    const retorno:Usuario = {
+      id: value.id,
+      name: value.name,
+      email: value.email
+    }
+
+    return retorno;
+  }
+
+  useEffect(() => {
+    
+    const json = localStorage.getItem('@usuario')!!
+    const json_ = JSON.parse(json);
+    
+    const usuarioLocalizado = converter(json_)
+    setUsuario(usuarioLocalizado)
+  }, [])
+
   return (
     <>
       <Header />
@@ -15,12 +53,12 @@ export function Profile() {
             <div className="row">
               <div className="column">
                 <label>Usuário</label>
-                <input type="text" placeholder="Informe seu nome" />
+                <input type="text" placeholder="Informe seu nome" value={usuario?.name}/>
               </div>
 
               <div className="column">
                 <label>Email</label>
-                <input type="email" placeholder="Informe seu email" />
+                <input type="email" placeholder="Informe seu email" value={usuario?.email}/>
               </div>
             </div>
 
