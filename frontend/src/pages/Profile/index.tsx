@@ -8,16 +8,6 @@ import { Header } from "../../components/Header";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { Card, Container } from "./styles";
 
-interface Usuario {
-  id: number;
-  name: string;
-  email: string;
-  endereco: string;
-	cep: string;
-	bairro: string;
-	cidade: string;
-}
-
 export function Profile() {
   const { updateUser } = useProfile();
 
@@ -28,48 +18,24 @@ export function Profile() {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
 
-  function converter(json:string):Usuario{
-
-    const value = JSON.parse(json, (key, value) => {
-      if (typeof value === 'string') {
-        return value;
-      }
-      return value;
-    });
-
-    const retorno:Usuario = {
-      id: value.id,
-      name: value.name,
-      email: value.email,
-      bairro: value.bairro,
-      cep: value.cep,
-      cidade: value.cidade,
-      endereco: value.endereco
-    }
-
-    return retorno;
-  }
-
   useEffect(() => {
     
     const json = localStorage.getItem('@usuario')!!
-    const json_ = JSON.parse(json);
-    
-    const usuarioLocalizado = converter(json_)
-
-    setEmail(usuarioLocalizado.email)
-    setName(usuarioLocalizado.name)
-    setEndereco(usuarioLocalizado.endereco)
-    setCep(usuarioLocalizado.cep)
-    setCidade(usuarioLocalizado.cidade)
+    const usuario = JSON.parse(json);
+        
+    setEmail(usuario.email)
+    setName(usuario.name)
+    setEndereco(usuario.endereco)
+    setCep(usuario.cep)
+    setCidade(usuario.cidade)
+    setBairro(usuario.bairro)
 
   }, []);
 
   async function handleUpdateAccount(e: FormEvent) {
     e.preventDefault();
 
-    if(!name || !endereco || !cep || !bairro || !cidade) {
-      console.log("cuco")
+    if(!name || !endereco || !cep || !bairro || !cidade) {      
       toast.warning('Preencha todos os campos para continuar');
     
     } else {

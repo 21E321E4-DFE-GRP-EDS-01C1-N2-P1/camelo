@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import api from "../services/api";
 
-import jsonwebtoken from "jsonwebtoken";
 import jwt_decode from "jwt-decode";
 
 
@@ -55,6 +54,7 @@ export function UserProvider({ children }: UserProviderProps) {
       setUser(JSON.parse(newUser));
       toast.success("Usuário cadastrado com sucesso");
       history.push('/');
+
     }).catch((err) => {
       toast.error("Erro ao cadastrar usuário");
     });
@@ -66,7 +66,22 @@ export function UserProvider({ children }: UserProviderProps) {
 
     await api.put('/user', user)
     .then(response => {
+      
+      const newValue = {
+        name: user.name,
+        email: user.email,
+        endereco: user.endereco,
+        cep: user.cep,
+        bairro: user.bairro,
+        cidade: user.cidade
+      }
+
+      const json = JSON.stringify(newValue)
+      localStorage.setItem("@usuario", json)
+
+      history.push('/home');      
       toast.success("Dados atualizado com sucesso")
+
     }).catch((err) => {
       toast.error("Erro ao atualizar daddos do usuário");
     });
@@ -80,10 +95,21 @@ export function UserProvider({ children }: UserProviderProps) {
         const { authorization } = response.headers;
         const [, token_jwt] = authorization.split(" ");      
 
-        const token = jwt_decode<Authorization>(token_jwt).sub
-        const json = JSON.stringify(token);
+        const token = String(jwt_decode<Authorization>(token_jwt).sub)
+
+        var jsonToken = JSON.parse(token)
         
-        localStorage.setItem("@usuario", json)      
+        const newValue = {
+          name: jsonToken.name,
+          email: jsonToken.email,
+          endereco: jsonToken.endereco,
+          cep: jsonToken.cep,
+          bairro: jsonToken.bairro,
+          cidade: jsonToken.cidade
+        }
+
+        const json = JSON.stringify(newValue)
+        localStorage.setItem("@usuario", json)
         localStorage.setItem('token', authorization);
 
         history.push('/home');
