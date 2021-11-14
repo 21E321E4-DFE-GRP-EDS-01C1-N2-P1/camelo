@@ -35,11 +35,13 @@ export function Header() {
                 </ProfileArea>
 
                 <NavigationArea>
-                    <img src={logoImg} alt="logo img" title="logo img"/>
+                    <Link to="/home">
+                        <img src={logoImg} alt="logo img" title="logo img"/>
+                    </Link>
 
                     <nav>
                         <ul>
-                            <li><Link to="">home</Link></li>
+                            <li><Link to="/home">home</Link></li>
                         </ul>
                         <input type="text" placeholder="Buscar produto"/>
                         <button>Buscar</button>

@@ -1,6 +1,10 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import api from "../services/api";
 
+import jsonwebtoken from "jsonwebtoken";
+import jwt_decode from "jwt-decode";
+
+
 import { toast } from 'react-toastify';
 import history from "../history";
 
@@ -8,6 +12,16 @@ interface User {
   name?: string;
   email: string;
   password: string;
+}
+
+interface Jwt {
+  id: number;
+  name: string;
+  email: string;
+}
+
+interface Authorization {
+  sub: Jwt
 }
 
 interface UserProviderProps {
@@ -46,6 +60,12 @@ export function UserProvider({ children }: UserProviderProps) {
         setLogedIn(true);
 
         const { authorization } = response.headers;
+        const [, token_jwt] = authorization.split(" ");      
+
+        const token = jwt_decode<Authorization>(token_jwt).sub
+        const json = JSON.stringify(token);
+        
+        localStorage.setItem("@usuario", json)      
         localStorage.setItem('token', authorization);
 
         history.push('/home');
