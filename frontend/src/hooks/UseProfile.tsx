@@ -12,6 +12,10 @@ interface User {
   name?: string;
   email: string;
   password: string;
+  endereco?: string;
+  cep?: string;
+  bairro?: string;
+  cidade?: string;
 }
 
 interface Jwt {
@@ -29,10 +33,12 @@ interface UserProviderProps {
 }
 
 interface UserContextData {
-  user: User;
+  user: User;  
   createUser: (user: User) => Promise<void>;
+  updateUser: (user: User) => Promise<void>;
   signIn: (user: User) => Promise<void>;
   signOut: () => void;
+  
 }
 
 export const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -51,6 +57,18 @@ export function UserProvider({ children }: UserProviderProps) {
       history.push('/');
     }).catch((err) => {
       toast.error("Erro ao cadastrar usuário");
+    });
+  }
+
+  async function updateUser(user: User) {
+
+    api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
+
+    await api.put('/user', user)
+    .then(response => {
+      toast.success("Dados atualizado com sucesso")
+    }).catch((err) => {
+      toast.error("Erro ao atualizar daddos do usuário");
     });
   }
 
@@ -82,7 +100,14 @@ export function UserProvider({ children }: UserProviderProps) {
   }
 
   return (
-    <UserContext.Provider value={{ user, createUser, signIn, signOut }}>
+    <UserContext.Provider value={{ 
+      user,       
+      createUser, 
+      signIn, 
+      signOut, 
+      updateUser,      
+      }}>
+
       {children}
     </UserContext.Provider>
   );

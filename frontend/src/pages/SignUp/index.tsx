@@ -45,11 +45,25 @@ export default function SignUp() {
         </div>
 
         <Form>
-          <input type="text" id="username" placeholder="Usuário" onChange={e => setName(e.target.value)} />
-          <input type="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-          <input type="password" id="password" placeholder="Senha" onChange={e => setPassword(e.target.value)} />
+          <input 
+            type="text" 
+            id="username" 
+            placeholder="Usuário" 
+            onChange={e => setName(e.target.value)} />
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="Email" 
+            onChange={e => setEmail(e.target.value)} />
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Senha" 
+            onChange={e => setPassword(e.target.value)} />
 
-          <button type="submit" onClick={handleCreateAccount}>Cadastrar</button>
+          <button 
+            type="submit" 
+            onClick={handleCreateAccount}>Cadastrar</button>
 
           <div className="auth-footer">
             <p>Já tem acesso?</p>

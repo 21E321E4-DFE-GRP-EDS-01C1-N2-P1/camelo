@@ -9,19 +9,19 @@ export function Footer() {
       <Content>
         <MenuItem>
           <FiHome size={16} />
-          <Link to="">Home</Link>
+          <Link to="/home">Home</Link>
         </MenuItem>
         <MenuItem>
           <FiUser size={16} />
-          <Link to="">Profile</Link>
+          <Link to="/profile">Profile</Link>
         </MenuItem>
         <MenuItem>
           <FiShoppingCart size={16} />
-          <Link to="">Cart</Link>
+          <Link to="/cart">Cart</Link>
         </MenuItem>
         <MenuItem>
           <FiHeart size={16} />
-          <Link to="">Favorites</Link>
+          <Link to="/home">Favorites</Link>
         </MenuItem>
       </Content>
     </Container>
