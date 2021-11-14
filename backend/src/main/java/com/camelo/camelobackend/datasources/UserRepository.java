@@ -35,7 +35,17 @@ public class UserRepository implements UserPort {
     public User buscarPor(String email) {
         var profileModel = userData.buscarPorEmail(email);
 
-        var userResponse = new User(profileModel.getId(), profileModel.getName(), profileModel.getEmail(), profileModel.getPassword());
+        var userResponse = new User(
+                profileModel.getId(),
+                profileModel.getName(),
+                profileModel.getEmail(),
+                profileModel.getPassword(),
+                profileModel.getEndereco(),
+                profileModel.getCep(),
+                profileModel.getBairro(),
+                profileModel.getCidade()
+        );
+
         var cartoes = profileModel.getCartoes().stream().map(it -> getCartao(it, userResponse)).collect(Collectors.toList());
         var roles = profileModel.getRoles().stream().map(this::getRole).collect(Collectors.toSet());
 

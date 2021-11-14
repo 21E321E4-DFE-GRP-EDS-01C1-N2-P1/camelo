@@ -13,9 +13,10 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     private String password;
@@ -30,6 +31,11 @@ public class UserModel {
 
     @OneToMany(mappedBy = "user", cascade = ALL, fetch = FetchType.EAGER)
     private List<CartaoModel> cartoes;
+
+    private String endereco;
+    private String cep;
+    private String bairro;
+    private String cidade;
 
     public Long getId() {
         return id;
@@ -77,5 +83,37 @@ public class UserModel {
 
     public void setCartoes(List<CartaoModel> cartoes) {
         this.cartoes = cartoes;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }

@@ -76,12 +76,9 @@ export function UserProvider({ children }: UserProviderProps) {
         cidade: user.cidade
       }
 
+      toast.success('Dados atualizado com sucesso');
       const json = JSON.stringify(newValue)
       localStorage.setItem("@usuario", json)
-
-      history.push('/home');      
-      toast.success("Dados atualizado com sucesso")
-
     }).catch((err) => {
       toast.error("Erro ao atualizar daddos do usuário");
     });

@@ -57,6 +57,15 @@ public class CartaoRepository implements CartaoPort {
     }
 
     private User getUser(UserModel userModel) {
-        return new User(userModel.getId(), userModel.getName(), userModel.getEmail(), userModel.getPassword());
+        return new User(
+                userModel.getId(),
+                userModel.getName(),
+                userModel.getEmail(),
+                userModel.getPassword(),
+                userModel.getEndereco(),
+                userModel.getCep(),
+                userModel.getBairro(),
+                userModel.getCidade()
+        );
     }
 }

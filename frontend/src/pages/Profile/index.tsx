@@ -47,7 +47,7 @@ export function Profile() {
         cidade,
         endereco,
         name
-      })
+      })      
     } 
   }
 
@@ -63,6 +63,7 @@ export function Profile() {
         draggable
         pauseOnHover
         />
+
       <Header />
       <HeaderMobile />
       <Container>
