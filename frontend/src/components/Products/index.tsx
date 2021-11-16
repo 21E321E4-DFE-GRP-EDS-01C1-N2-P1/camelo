@@ -22,7 +22,6 @@ export function Products({ name, image, price, promotionPrice, promotion }: Prod
                     <p className="desconto">{!promotion ? '' : promotion + '% off'}</p>
                     <p>{!promotion ? '' : promotionPrice}</p>
                 </div>
-                <ButtonCart />
             </Product>
         </>
     );
