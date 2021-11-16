@@ -1,6 +1,6 @@
 package com.camelo.camelobackend.transportlayers.mapper;
 
-import com.camelo.camelobackend.transportlayers.openapi.model.Categoria;
+import com.camelo.camelobackend.transportlayers.dto.Categoria;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

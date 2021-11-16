@@ -1,6 +1,6 @@
 package com.camelo.camelobackend.configurations;
 
-import com.camelo.camelobackend.transportlayers.openapi.model.Error;
+import com.camelo.camelobackend.transportlayers.dto.Error;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -39,6 +39,4 @@ public class ControllerAdvicer {
         response.setMensagem(e.getMessage());
         return response;
     }
-
-
 }

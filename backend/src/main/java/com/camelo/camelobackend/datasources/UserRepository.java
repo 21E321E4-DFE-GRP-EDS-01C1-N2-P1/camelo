@@ -14,6 +14,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -35,24 +36,28 @@ public class UserRepository implements UserPort {
     public User buscarPor(String email) {
         var profileModel = userData.buscarPorEmail(email);
 
-        var userResponse = new User(
-                profileModel.getId(),
-                profileModel.getName(),
-                profileModel.getEmail(),
-                profileModel.getPassword(),
-                profileModel.getEndereco(),
-                profileModel.getCep(),
-                profileModel.getBairro(),
-                profileModel.getCidade()
-        );
+        if (Objects.nonNull(profileModel)) {
+            var userResponse = new User(
+                    profileModel.getId(),
+                    profileModel.getName(),
+                    profileModel.getEmail(),
+                    profileModel.getPassword(),
+                    profileModel.getEndereco(),
+                    profileModel.getCep(),
+                    profileModel.getBairro(),
+                    profileModel.getCidade()
+            );
 
-        var cartoes = profileModel.getCartoes().stream().map(it -> getCartao(it, userResponse)).collect(Collectors.toList());
-        var roles = profileModel.getRoles().stream().map(this::getRole).collect(Collectors.toSet());
+            var cartoes = profileModel.getCartoes().stream().map(it -> getCartao(it, userResponse)).collect(Collectors.toList());
+            var roles = profileModel.getRoles().stream().map(this::getRole).collect(Collectors.toSet());
 
-        userResponse.setCartoes(cartoes);
-        userResponse.setRoles(roles);
+            userResponse.setCartoes(cartoes);
+            userResponse.setRoles(roles);
 
-        return userResponse;
+            return userResponse;
+        }
+
+        throw new RuntimeException("USUARIO NÃO LOCALIZADO");
     }
 
     private Role getRole(RoleModel roleModel) {

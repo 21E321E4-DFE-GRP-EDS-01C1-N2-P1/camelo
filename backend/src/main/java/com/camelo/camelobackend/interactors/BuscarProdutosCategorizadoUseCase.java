@@ -1,8 +1,8 @@
 package com.camelo.camelobackend.interactors;
 
 import com.camelo.camelobackend.ports.ProdutoPort;
+import com.camelo.camelobackend.transportlayers.dto.ProdutoCategorizado;
 import com.camelo.camelobackend.transportlayers.mapper.ProdutoCategorizadoMapper;
-import com.camelo.camelobackend.transportlayers.openapi.model.ProdutoCategorizado;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
