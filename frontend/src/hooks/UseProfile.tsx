@@ -36,6 +36,7 @@ interface UserContextData {
   createUser: (user: User) => Promise<void>;
   updateUser: (user: User) => Promise<void>;
   signIn: (user: User) => Promise<void>;
+  recovery: (email: string) => Promise<void>;
   signOut: () => void;
   
 }
@@ -58,6 +59,18 @@ export function UserProvider({ children }: UserProviderProps) {
     }).catch((err) => {
       toast.error("Erro ao cadastrar usuário");
     });
+  }
+
+  async function recovery(email: string) {
+    await api.post('/auth/forgot', {
+      "email": email
+    })
+    .then(response => {
+      toast.success("Email de recuperação enviado com sucesso");
+      history.push('/');
+    }).catch((err) => {
+      toast.error("Erro ao recuperar senha");
+    })
   }
 
   async function updateUser(user: User) {
@@ -124,12 +137,13 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider value={{ 
-      user,       
+      user,
+      recovery,       
       createUser, 
       signIn, 
       signOut, 
       updateUser,      
-      }}>
+    }}>
 
       {children}
     </UserContext.Provider>

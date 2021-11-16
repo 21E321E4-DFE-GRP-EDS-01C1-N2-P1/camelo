@@ -4,6 +4,7 @@ import Cart from "../pages/Cart";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import { Profile } from "../pages/Profile";
+import Recovery from '../pages/Recovery'
 
 export default function Routes() {
   return (
@@ -13,6 +14,7 @@ export default function Routes() {
       <Route path="/home" exact component={Home} />
       <Route path="/cart" component={Cart} />
       <Route path="/profile" component={Profile } />
+      <Route path="/recovery" component={Recovery} />
     </Switch>
   );
 }

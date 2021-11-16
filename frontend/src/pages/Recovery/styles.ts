@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--blue);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
 `;
 
 export const Content = styled.div`
-  max-width: 400px;
+    max-width: 400px;
   width: 100%;
   margin: 0 1rem;
   padding: 2rem;
@@ -50,6 +50,7 @@ export const Form = styled.form`
     border-radius: .5rem;
     height: 2.6rem;
     padding: 1rem;
+    margin-top: 25px;
     
     & + input {
       margin-top: 1rem;
@@ -88,19 +89,6 @@ export const Form = styled.form`
     a {
       margin-left: .5rem;
       color: var(--blue);
-      font-weight: bolder;
-      text-decoration: none;
-    }
-  }
-
-  .recovery {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    a {
-      margin-left: .5rem;
-      color: var(--text);
       font-weight: bolder;
       text-decoration: none;
     }
