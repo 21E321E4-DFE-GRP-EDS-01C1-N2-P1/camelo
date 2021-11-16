@@ -36,7 +36,7 @@ interface UserContextData {
   createUser: (user: User) => Promise<void>;
   updateUser: (user: User) => Promise<void>;
   signIn: (user: User) => Promise<void>;
-  recovery: (email: string) => Promise<void>;
+  recovery: (email: string) => Promise<boolean>;
   signOut: () => void;
   
 }
@@ -61,16 +61,16 @@ export function UserProvider({ children }: UserProviderProps) {
     });
   }
 
-  async function recovery(email: string) {
+  async function recovery(email: string): Promise<boolean> {
     await api.post('/auth/forgot', {
       "email": email
     })
     .then(response => {
       toast.success("Email de recuperação enviado com sucesso");
-      history.push('/');
     }).catch((err) => {
       toast.error("Erro ao recuperar senha");
     })
+    return false;
   }
 
   async function updateUser(user: User) {
