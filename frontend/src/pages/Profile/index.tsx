@@ -90,14 +90,6 @@ export function Profile() {
               </div>
             </div>
 
-            <div className="column">
-              <label>Endereço</label>
-              <input 
-                type="text" 
-                placeholder="Informe seu endereço"
-                value={endereco}
-                onChange={e => setEndereco(e.target.value)}/>
-            </div>
             <div className="row">
               <div className="column">
                 <label>Cep</label>
@@ -125,6 +117,14 @@ export function Profile() {
                   value={cidade}
                   onChange={e => setCidade(e.target.value)} />
               </div>
+            </div>
+            <div className="column">
+              <label>Endereço</label>
+              <input 
+                type="text" 
+                placeholder="Informe seu endereço"
+                value={endereco}
+                onChange={e => setEndereco(e.target.value)}/>
             </div>
             <div className="buttonProfile">
               <button
