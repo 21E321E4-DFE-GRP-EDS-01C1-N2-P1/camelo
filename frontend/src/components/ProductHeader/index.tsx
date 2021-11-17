@@ -29,7 +29,6 @@ export function ProductHeader({
       </Header>
       <Footer>
         <p className="total">{promotionPrice}</p>
-        <ButtonCart />
       </Footer>
     </Product>
   );

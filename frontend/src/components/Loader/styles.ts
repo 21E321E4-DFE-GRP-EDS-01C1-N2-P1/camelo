@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
 export const Spinner = styled.div`
     border: 6px solid var(--gray-dark);
     border-top: 6px solid var(--background);

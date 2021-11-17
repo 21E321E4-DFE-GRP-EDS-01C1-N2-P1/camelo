@@ -1,5 +1,6 @@
 
 import {
+    Container,
     Spinner
 } from './styles'
 
@@ -10,7 +11,9 @@ interface Props {
 export function Loader({ enable }: Props) {
 
     return enable ? (
-        <Spinner />
+        <Container>
+            <Spinner />
+        </Container>
     ) : (
         <>
         </>

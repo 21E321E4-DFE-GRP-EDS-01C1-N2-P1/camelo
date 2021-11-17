@@ -61,6 +61,10 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--text);
   }
 
+  a {
+    text-decoration: none;
+  }
+
   button, a {
     cursor: pointer;
     color: var(--text);
