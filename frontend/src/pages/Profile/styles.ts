@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  @media(pointer: fine) {
+    width: 100vw;
+    height: 100vh;
+  }
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,6 +14,10 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
+  @media(pointer: coarse) {
+    margin: 1rem;
+  }
+
   border-radius: 12px;
   box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
   background-color: #fff;
@@ -19,9 +26,7 @@ export const Card = styled.div`
   border: 0;
   display: flex;
   flex-direction: column;
-  word-wrap: break-word;
   background-color: #fff;
-  background-clip: initial;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: 0.25rem;
   padding: 2rem;
@@ -41,6 +46,7 @@ export const Card = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .buttonProfile {
@@ -103,5 +109,9 @@ export const Card = styled.div`
       }
     }
   }
+`;
 
+export const CardArea = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 `;

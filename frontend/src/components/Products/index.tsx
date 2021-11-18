@@ -1,7 +1,6 @@
 import { Product } from "./styles";
 
 import notFound from "../../assets/not-found.jpg";
-import { ButtonCart } from "../ButtonCart";
 
 interface ProductProps {
     name: string;
