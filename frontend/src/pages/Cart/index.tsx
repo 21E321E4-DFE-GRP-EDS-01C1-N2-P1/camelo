@@ -7,6 +7,7 @@ import api from "../../services/api";
 import { Header } from "../../components/Header";
 import { Container } from "../../components/Container";
 import Info from "../../components/Info";
+import {ProductDetail} from "../../components/ProductDetail";
 
 interface Product {
   id?: number;
@@ -57,6 +58,7 @@ export default function Cart({ ...props }) {
       <Info breadCrumbs={[ "HOME", "HOT DEAL", "NIKE AIR MAX" ]} />
 
       <Container>
+        <ProductDetail />
       </Container>      
     </>
   );
