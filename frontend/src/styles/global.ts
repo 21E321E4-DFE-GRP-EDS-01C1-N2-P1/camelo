@@ -103,15 +103,4 @@ export const GlobalStyle = createGlobalStyle`
         filter: brightness(0.8)
     }
   }
-
-  @media(pointer: coarse) {
-    .react-modal-content {
-      width: 100%;
-      max-width: 576px;
-      background: var(--background);
-      padding: 3rem;
-      position: relative;
-      border-radius: 0.25rem;
-    }
-  }
 `;

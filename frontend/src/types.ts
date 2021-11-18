@@ -5,3 +5,11 @@ export interface Product {
   preco: number;
   desconto?: number;
 }
+
+export interface Card {
+  id: number;
+  name: string;
+  number: string;
+  expiry: string;
+  cvv: string;
+}
