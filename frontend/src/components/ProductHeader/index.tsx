@@ -1,7 +1,6 @@
 import { Product, Header, Footer } from "./styles";
 
 import notFound from "../../assets/not-found.jpg";
-import { ButtonCart } from "../ButtonCart";
 
 interface ProductHeaderProps {
   name: string;

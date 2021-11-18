@@ -3,25 +3,24 @@ package com.camelo.camelobackend.interactors;
 import com.camelo.camelobackend.ports.ProdutoPort;
 import com.camelo.camelobackend.transportlayers.mapper.ProdutoCategorizadoMapper;
 import com.camelo.camelobackend.transportlayers.openapi.model.ProdutoCategorizado;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.math.BigDecimal;
 
 @Service
-public class BuscarProdutosCategorizadoUseCase {
+public class BuscarProdutoCategorizadoPorIdUseCase {
 
     private final ProdutoPort port;
     private final ProdutoCategorizadoMapper mapper;
 
-    public BuscarProdutosCategorizadoUseCase(ProdutoPort port) {
+    public BuscarProdutoCategorizadoPorIdUseCase(ProdutoPort port) {
         this.port = port;
-        this.mapper = ProdutoCategorizadoMapper.INSTANCE;
+        this.mapper = Mappers.getMapper(ProdutoCategorizadoMapper.class);
     }
 
-    public List<ProdutoCategorizado> executar() {
-        var produtos = port.produtos();
-
-        return produtos.stream().map(mapper::map).collect(Collectors.toList());
+    public ProdutoCategorizado executar(BigDecimal id) {
+        var produto = port.obterPor(id.longValue());
+        return mapper.map(produto);
     }
 }

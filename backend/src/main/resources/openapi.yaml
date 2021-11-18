@@ -70,7 +70,7 @@ paths:
     get:
       responses:
         '200':
-          $ref: '#/components/responses/ProdutoCategorizado'
+          $ref: '#/components/responses/ProdutosCategorizado'
         '400':
           $ref: '#/components/responses/InfoErro'
         '404':
@@ -128,6 +128,27 @@ paths:
         '400':
           $ref: '#/components/responses/InfoErro'
         '401':
+          $ref: '#/components/responses/InfoErro'
+        '404':
+          $ref: '#/components/responses/InfoErro'
+        '500':
+          $ref: '#/components/responses/InfoErro'
+  '/produtos/categorizado/{id}':
+    get:
+      parameters:
+        -
+          examples:
+            id produto:
+              value: '1'
+          name: id
+          schema:
+            type: number
+          in: path
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/ProdutoCategorizado'
+        '400':
           $ref: '#/components/responses/InfoErro'
         '404':
           $ref: '#/components/responses/InfoErro'
@@ -306,35 +327,6 @@ components:
                 preco: 88.8
                 desconto: 43
       description: ''
-    ProdutoCategorizado:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/ProdutoCategorizado'
-          examples:
-            Produtos Categorizado:
-              value:
-                -
-                  id: 25
-                  nome: some text
-                  url: some text
-                  preco: 11.07
-                  desconto: 18
-                  categoria:
-                    id: 1
-                    descricao: some text
-                -
-                  id: 6
-                  nome: some text
-                  url: some text
-                  preco: 38.34
-                  desconto: 67
-                  categoria:
-                    id: 31
-                    descricao: some text
-      description: ''
     CartaoResponse:
       content:
         application/json:
@@ -368,4 +360,54 @@ components:
                   nome: some text
                   vencimento: some text
                   cvv: 64
+      description: ''
+    ProdutosCategorizado:
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ProdutoCategorizado'
+          examples:
+            Produtos Categorizado:
+              value:
+                -
+                  id: 25
+                  nome: some text
+                  url: some text
+                  preco: 11.07
+                  desconto: 18
+                  categoria:
+                    id: 1
+                    descricao: some text
+                -
+                  id: 6
+                  nome: some text
+                  url: some text
+                  preco: 38.34
+                  desconto: 67
+                  categoria:
+                    id: 31
+                    descricao: some text
+      description: ''
+    ProdutoCategorizado:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProdutoCategorizado'
+          examples:
+            Produto categorizado:
+              value:
+                id: 53
+                nome: some text
+                url: some text
+                preco: 12.67
+                desconto: 88
+                categorias:
+                  -
+                    id: 56
+                    descricao: some text
+                  -
+                    id: 37
+                    descricao: some text
       description: ''

@@ -12,7 +12,11 @@ import {
     NavigationButton
 } from "./styles";
 
-export function Header() {
+interface Props {
+    page?: string;
+}
+
+export function Header({ page }: Props) {
     const { signOut } = useProfile();
 
     return (
@@ -41,7 +45,11 @@ export function Header() {
 
                     <nav>
                         <ul>
-                            <li><Link to="/home">home</Link></li>
+                            { page ? (
+                                <li>{ page }</li>
+                            ) : (                                
+                                <li><Link to="/home">home</Link></li>
+                            )}
                         </ul>
                         <input type="text" placeholder="Buscar produto"/>
                         <button>Buscar</button>

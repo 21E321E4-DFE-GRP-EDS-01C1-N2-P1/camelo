@@ -11,7 +11,7 @@ interface ProductsProviderProps {
 
 interface ProductsContextData {
     products: ProductFormatted[];
-    productsOnSale: ProductFormatted[];
+    productsOnSale: ProductFormatted[];    
 }
 
 interface ProductFormatted extends Product {
@@ -20,6 +20,7 @@ interface ProductFormatted extends Product {
 }
 
 const ProductsContext = createContext<ProductsContextData>({} as ProductsContextData);
+
 
 export function ProductsProvider({ children }: ProductsProviderProps) {
     const [productsOnSale, setProductsOnSale] = useState<ProductFormatted[]>([]);
@@ -51,7 +52,10 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     }, []);
 
     return (
-        <ProductsContext.Provider value={{ products, productsOnSale }}>
+        <ProductsContext.Provider value={{ 
+            products, 
+            productsOnSale 
+        }}>
             {children}
         </ProductsContext.Provider>
     );
