@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+
 import { useProfile } from "../../hooks/UseProfile";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";

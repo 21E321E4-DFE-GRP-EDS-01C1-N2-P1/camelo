@@ -1,8 +1,11 @@
+import React, { FormEvent, useState } from "react";
+import Cards from 'react-credit-cards';
 import Modal from "react-modal";
+
 import { Container, Row } from "./styles";
 import closeImg from "../../assets/close.svg";
-import { useState } from "react";
-import Cards from 'react-credit-cards';
+import { usePagamento } from '../../hooks/usePagamento';
+import { toast } from "react-toastify";
 
 interface NewCardModalProps {
   isOpen: boolean;
@@ -12,14 +15,34 @@ interface NewCardModalProps {
 type Focused = "name" | "number" | "expiry" | "cvc";
 
 export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
+  
+  const { save } = usePagamento();
+  const [focus, setFocus] = useState<Focused | undefined>(undefined);
+
   const [number, setNumber] = useState('');
   const [name, setName] = useState('');
   const [expiry, setExpiry] = useState('');
   const [cvc, setCvc] = useState('');
-  const [focus, setFocus] = useState<Focused | undefined>(undefined);
 
   function handleChangeFocus(e: React.ChangeEvent<HTMLInputElement>) {
     setFocus(e.target.name as Focused);
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    if (!number || !name || !expiry || !cvc) {
+      toast.warning("Preencha todos os campos para continuar");
+    } else {
+
+      await save({
+        nome: name,
+        numero: number,
+        cvv: cvc,
+        vencimento: expiry
+      });
+    }
+
   }
 
   return (
@@ -77,7 +100,11 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
             onChange={e => setCvc(e.target.value)}
           />
         </Row>
-        <button type="submit">Salvar</button>
+        <button 
+          type="submit" 
+          onClick={handleSubmit}>
+            Salvar
+        </button>
       </Container>
     </Modal>
   );

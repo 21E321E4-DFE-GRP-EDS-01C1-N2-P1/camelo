@@ -1,10 +1,8 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import api from "../services/api";
-
 import jwt_decode from "jwt-decode";
-
-
 import { toast } from 'react-toastify';
+
+import api from "../services/api";
 import history from "../history";
 
 interface User {
