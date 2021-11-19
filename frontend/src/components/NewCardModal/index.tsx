@@ -4,8 +4,8 @@ import Modal from "react-modal";
 
 import { Container, Row } from "./styles";
 import closeImg from "../../assets/close.svg";
-import { usePagamento } from '../../hooks/usePagamento';
 import { toast } from "react-toastify";
+import { useCard } from '../../hooks/useCard';
 
 interface NewCardModalProps {
   isOpen: boolean;
@@ -16,7 +16,7 @@ type Focused = "name" | "number" | "expiry" | "cvc";
 
 export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
   
-  const { save } = usePagamento();
+  const { save } = useCard();
   const [focus, setFocus] = useState<Focused | undefined>(undefined);
 
   const [number, setNumber] = useState('');
