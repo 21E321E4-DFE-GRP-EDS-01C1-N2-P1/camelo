@@ -29,6 +29,7 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
   }
 
   async function handleSubmit(e: FormEvent) {
+    console.log(e)
     e.preventDefault();
 
     if (!number || !name || !expiry || !cvc) {

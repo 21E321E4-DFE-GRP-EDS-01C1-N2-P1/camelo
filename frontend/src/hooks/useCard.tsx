@@ -26,7 +26,7 @@ const CardContext = createContext<CardsContextData>({} as CardsContextData);
 export function CardsProvider({ children }: CardsProviderProps) {
   const [cards, setCards] = useState<Card[]>([]);
 
-  async function save(payment: Pagamento) {
+  async function save(payment: Pagamento):Promise<void> {
     await api.post('/pagamento', payment)
     .then(response => {
 
@@ -34,7 +34,7 @@ export function CardsProvider({ children }: CardsProviderProps) {
     }).catch((err) => {
         toast.error("Erro ao cadastrar forma de pagamento");
     })
-}
+  }
 
   return (
     <CardContext.Provider value={{
