@@ -29,7 +29,6 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
   }
 
   async function handleSubmit(e: FormEvent) {
-    console.log(e)
     e.preventDefault();
 
     if (!number || !name || !expiry || !cvc) {
@@ -37,13 +36,14 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
     } else {
 
       await save({
-        nome: name,
-        numero: number,
-        cvv: cvc,
-        vencimento: expiry
+        nome: String(name),
+        numero: String(number),
+        cvv: parseInt(cvc, 10),
+        vencimento: String(expiry)
       });
     }
 
+    onRequestClose();
   }
 
   return (

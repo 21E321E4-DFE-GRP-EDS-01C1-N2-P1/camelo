@@ -7,6 +7,7 @@ import history from "./history";
 import { ProductsProvider } from "./hooks/UseProducts";
 import { UserProvider } from "./hooks/UseProfile";
 import { ModalProvider } from "./hooks/useModal";
+import { CardsProvider } from './hooks/useCard';
 
 Modal.setAppElement('#root');
 
@@ -15,10 +16,12 @@ function App() {
     <UserProvider>
       <ProductsProvider>
         <ModalProvider>
-          <Router history={history}>
-            <Routes />
-          </Router>
-          <GlobalStyle />
+          <CardsProvider>            
+            <Router history={history}>
+              <Routes />
+            </Router>
+            <GlobalStyle />
+          </CardsProvider>
         </ModalProvider>
       </ProductsProvider>
     </UserProvider>

@@ -18,7 +18,7 @@ interface Pagamento {
   numero: string;
   nome: string;
   vencimento: string;
-  cvv: string;
+  cvv: number;
 }
 
 const CardContext = createContext<CardsContextData>({} as CardsContextData);
@@ -27,7 +27,9 @@ export function CardsProvider({ children }: CardsProviderProps) {
   const [cards, setCards] = useState<Card[]>([]);
 
   async function save(payment: Pagamento):Promise<void> {
-    await api.post('/pagamento', payment)
+    api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
+
+    await api.post('pagamento', payment)
     .then(response => {
 
         toast.success("Pagamento cadastrado com sucesso.");
