@@ -3,6 +3,7 @@ import { ProductFormatted } from "../../types";
 import { formatPrice } from "../../util/format";
 import { ButtonCart } from "../ButtonCart";
 import { Container } from "./styles";
+import { FaWhatsapp } from "react-icons/fa";
 
 interface ProductProps {
   produto: ProductFormatted;
@@ -39,7 +40,12 @@ export function Product({ produto }: ProductProps) {
             <p>{count}</p>
             <button onClick={() => setCount(count + 1)}>+</button>
           </div>
+          <div className="buttons">
             <ButtonCart />
+            <a href={`https://web.whatsapp.com/send?text=${window.location.href}`} target="_blank" rel="noreferrer">
+              <FaWhatsapp size={20} />
+            </a>
+          </div>
         </div>
         </section>
     </Container>

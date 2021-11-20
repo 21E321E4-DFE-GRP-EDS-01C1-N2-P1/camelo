@@ -62,6 +62,20 @@ export const Container = styled.div`
                     font-weight: bold;
                 }
             }
+
+            .buttons {
+                display: flex;
+                align-items: center;
+                
+                a {
+                    background: #33af22;
+                    display: flex;
+                    padding: .5rem;
+                    border-radius: 50%;
+                    color: var(--background);
+                    margin-left: .5rem;
+                }
+            }
         }
     }
 `;
