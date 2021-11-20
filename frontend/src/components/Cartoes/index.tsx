@@ -17,7 +17,7 @@ interface Response {
     content: Cartao[];
     totalPages: number;
     totalElements: number;
-    size: number;
+    size: 0;
     empty: boolean;
   }
   
@@ -33,6 +33,17 @@ export function Cartoes() {
 
     const [response, setResponse] = useState<Response>();  
     const [page, setPage] = useState<number>(0);
+    const [items, setItems] = useState<number[]>([]);
+
+    function renderTFooterPaginator() {
+        var aux = []
+        if (response && response.size > 0) {
+            for(let i = 0; i < response.size; i++) {
+                aux.push(i)
+                setItems(aux)
+            }            
+        }
+    }
 
     useEffect(() => {
         api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
@@ -41,12 +52,29 @@ export function Cartoes() {
     
         api.get<Response>(url)
         .then(res => {
-          setResponse(res.data);
-    
+          setResponse(res.data);          
         }).catch((err) => {
           toast.error("Erro ao consultar cartões.");
         });
-    }, [page]);
+
+        renderTFooterPaginator();
+    }, []);
+
+    function teste(pagina:number) {
+        console.log(`nova pagina ${pagina}`)
+        api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
+    
+        const url = `/pagamento?page=${pagina}&linesPerPage=3`;
+    
+        api.get<Response>(url)
+        .then(res => {
+          setResponse(res.data);          
+        }).catch((err) => {
+          toast.error("Erro ao consultar cartões.");
+        });
+
+        renderTFooterPaginator();
+    }
 
     return (
         <Table>
@@ -71,15 +99,11 @@ export function Cartoes() {
                 )}
             </tbody>
             <tfoot>
-                {
-                    response?.size && response?.size > 0 ? (
-                        
-                        <h1>q</h1>
-                        
-                    ) : (
-                        <h2>qe</h2>
-                    )
-                }
+                <tr>
+                    {items.map(it => (
+                        <button onClick={() => teste(it)}>{it + 1}</button> 
+                    ))}
+                </tr>
             </tfoot>
         </Table>
     )
