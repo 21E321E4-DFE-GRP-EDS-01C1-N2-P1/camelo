@@ -53,7 +53,7 @@ export const Container = styled.form`
   }
 `;
 
-export const Row = styled.form`
+export const Row = styled.div`
   margin: 1rem 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
