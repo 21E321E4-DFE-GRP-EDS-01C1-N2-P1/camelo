@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -11,15 +11,6 @@ export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn } = useProfile();
-  // const [, setLogedIn] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if(token) {
-  //     localStorage.setItem('token', token);
-  //     setLogedIn(true);
-  //   }
-  // }, []);
 
   async function handleSignIn(e: FormEvent) {
     e.preventDefault();

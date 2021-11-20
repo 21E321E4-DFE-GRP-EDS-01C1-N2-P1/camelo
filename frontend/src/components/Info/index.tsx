@@ -12,7 +12,7 @@ export default function Info({ breadCrumbs }: Props) {
                 { breadCrumbs ? (
                     <>
                         { breadCrumbs.map(breadCrumb => (
-                            <ul>{breadCrumb}</ul>
+                            <ul key={Math.random()}>{breadCrumb}</ul>
                         ))}                        
                     </>
                 ): (

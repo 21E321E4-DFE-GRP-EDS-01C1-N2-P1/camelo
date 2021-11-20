@@ -27,7 +27,7 @@ export function Dashboard() {
 
       <DashboardMain>
         {products.map((product) => (
-          <Link to={`/cart/${product.id}`}>
+          <Link to={`/productDetails/${product.id}`}>
             <Products
               key={product.id}
               name={product.nome}

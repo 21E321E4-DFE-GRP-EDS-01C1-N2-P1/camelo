@@ -130,12 +130,12 @@ export function UserProvider({ children }: UserProviderProps) {
   function signOut() {
     setLogedIn(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('@usuario');
     history.push('/');
   }
 
   return (
     <UserContext.Provider value={{ 
-      // user,
       recovery,       
       createUser, 
       signIn, 
