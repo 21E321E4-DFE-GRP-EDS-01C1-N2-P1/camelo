@@ -6,15 +6,10 @@ import com.camelo.camelobackend.transportlayers.mapper.CartaoMapper;
 import com.camelo.camelobackend.transportlayers.openapi.api.PagamentoApi;
 import com.camelo.camelobackend.transportlayers.openapi.model.Cartao;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/")
@@ -44,11 +39,16 @@ public class PagamentoApiImpl implements PagamentoApi {
     }
 
     @PreAuthorize("hasAnyRole('CLIENTE')")
-    @Override
-    public ResponseEntity<List<Cartao>> pagamentoGet(@RequestHeader(value="Authorization") String authorization) {
-        var cartoes = listarPagamentosDoUsuarioUseCase.executar();
-        var response = cartoes.stream().map(mapper::map).collect(Collectors.toList());
-        return ResponseEntity.ok(response);
+    @GetMapping("/pagamento")
+    public ResponseEntity<Page<com.camelo.camelobackend.domain.Cartao>> pagamentoGet(
+            @RequestHeader(value="Authorization") String authorization,
+            @RequestParam(value="page", defaultValue="0", required = false) Integer page,
+            @RequestParam(value="linesPerPage", defaultValue="24", required = false) Integer linesPerPage,
+            @RequestParam(value="orderBy", defaultValue="nome", required = false) String orderBy,
+            @RequestParam(value="direction", defaultValue="ASC", required = false) String direction) {
+
+        var response = listarPagamentosDoUsuarioUseCase.executar(page, linesPerPage, orderBy, direction);
+        return ResponseEntity.ok().body(response);
     }
 
 }

@@ -78,23 +78,6 @@ paths:
         '500':
           $ref: '#/components/responses/InfoErro'
   /pagamento:
-    get:
-      parameters:
-        -
-          examples:
-            Bearer token:
-              value: >-
-                Bearer
-                eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZ21haWwuY29tIiwiZXhwIjoxNjM2NTk0ODM2fQ.VkshuIq_WYWjTFgTFZ_N5JY5n1fDFmg4dXuR1B198u4UCAReBpFI-miJWBy4ygGtLBpp9PxoAR7MAlazIX0gfA
-          name: Authorization
-          description: ''
-          schema:
-            type: string
-          in: header
-          required: true
-      responses:
-        '200':
-          $ref: '#/components/responses/CartoesResponse'
     post:
       requestBody:
         content:

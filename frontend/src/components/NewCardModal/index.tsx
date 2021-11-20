@@ -1,10 +1,11 @@
 import React, { FormEvent, useState } from "react";
 import Cards from 'react-credit-cards';
 import Modal from "react-modal";
+import { toast } from "react-toastify";
 
 import { Container, Row } from "./styles";
 import closeImg from "../../assets/close.svg";
-import { toast } from "react-toastify";
+
 import { useCard } from '../../hooks/useCard';
 
 interface NewCardModalProps {
@@ -35,12 +36,14 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
       toast.warning("Preencha todos os campos para continuar");
     } else {
 
-      await save({
+      const cartao = {
         nome: String(name),
         numero: String(number),
         cvv: parseInt(cvc, 10),
         vencimento: String(expiry)
-      });
+      };
+
+      await save(cartao);
     }
 
     onRequestClose();

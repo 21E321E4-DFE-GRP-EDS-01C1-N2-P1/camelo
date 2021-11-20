@@ -9,9 +9,12 @@ import com.camelo.camelobackend.domain.Cartao;
 import com.camelo.camelobackend.domain.User;
 import com.camelo.camelobackend.ports.CartaoPort;
 import org.mapstruct.factory.Mappers;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Repository
@@ -39,6 +42,20 @@ public class CartaoRepository implements CartaoPort {
         var userModel = userData.findById(id).orElseThrow();
         var response = data.findCartaoModelByUser(userModel);
         return response.stream().map(this::getCartao).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<Cartao> findAll(PageRequest pageRequest) {
+        var cartaoModelPage = data.findAll(pageRequest);
+
+        return cartaoModelPage.map(new Function<CartaoModel, Cartao>() {
+            @Override
+            public Cartao apply(CartaoModel model) {
+                var userModel = model.getUser();
+                var user = new User(userModel.getId(), userModel.getName(), userModel.getEmail(), userModel.getPassword(), userModel.getEndereco(), userModel.getCep(), userModel.getBairro(), userModel.getCidade());
+                return  new Cartao(model.getId(), model.getNumero(), model.getNome(), model.getVencimento(), model.getCvv(), user);
+            }
+        });
     }
 
     private CartaoModel getCartaoModel(Cartao cartao) {

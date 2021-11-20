@@ -2,26 +2,33 @@ import { FormEvent, useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useProfile } from "../../hooks/UseProfile";
+import { 
+  Card, 
+  CardArea, 
+  Container 
+} from "./styles";
+
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { HeaderMobile } from "../../components/HeaderMobile";
-import { Card, CardArea, Container } from "./styles";
 import { ButtonCard } from "../../components/ButtonCard";
 import { NewCardModal } from "../../components/NewCardModal";
+import { Cartoes } from '../../components/Cartoes';
+
+import { useProfile } from "../../hooks/UseProfile";
 import { useModal } from "../../hooks/useModal";
 
 export function Profile() {
+
   const { updateUser } = useProfile();
   const { isNewModalOpen, handleOpenNewModal, handleCloseNewModal } = useModal();
-
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [endereco, setEndereco] = useState("");
   const [cep, setCep] = useState("");
   const [bairro, setBairro] = useState("");
   const [cidade, setCidade] = useState("");
-
+  
   useEffect(() => {
     const json = localStorage.getItem("@usuario")!!;
     const usuario = JSON.parse(json);
@@ -146,8 +153,11 @@ export function Profile() {
         <NewCardModal        
           isOpen={isNewModalOpen}
           onRequestClose={handleCloseNewModal} />
+        
         <CardArea>
+          <Cartoes />
         </CardArea>
+
       </Container>
       <Footer />
     </>
