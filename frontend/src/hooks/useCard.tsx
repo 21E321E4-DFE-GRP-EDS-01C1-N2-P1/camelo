@@ -37,23 +37,23 @@ export function CardsProvider({ children }: CardsProviderProps) {
   const [page, setPage] = useState<number>(0);
   const [items, setItems] = useState<number[]>([]);
 
-  useEffect(() => {
-    async function getCards() {
-      api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
+  // useEffect(() => {
+  //   async function getCards() {
+  //     api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
   
-      const url = `/pagamento?page=${page}&linesPerPage=3`;
+  //     const url = `/pagamento?page=${page}&linesPerPage=3`;
   
-      await api.get<Response>(url)
-      .then(res => {
-        setResponse(res.data);         
-      })
-      .catch((err) => {
-        toast.error("Erro ao consultar cartões.");
-      });
-    }
-    getCards();
-    renderTFooterPaginator();
-  }, []);
+  //     await api.get<Response>(url)
+  //     .then(res => {
+  //       setResponse(res.data);         
+  //     })
+  //     .catch((err) => {
+  //       toast.error("Erro ao consultar cartões.");
+  //     });
+  //   }
+  //   getCards();
+  //   renderTFooterPaginator();
+  // }, []);
 
   function renderTFooterPaginator() {
     if (response && response.totalPages > 0) {

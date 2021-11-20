@@ -30,7 +30,7 @@ interface UserProviderProps {
 }
 
 interface UserContextData {
-  user: User;  
+  // user: User;  
   createUser: (user: User) => Promise<void>;
   updateUser: (user: User) => Promise<void>;
   signIn: (user: User) => Promise<void>;
@@ -42,17 +42,17 @@ interface UserContextData {
 export const UserContext = createContext<UserContextData>({} as UserContextData);
 
 export function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<User>({} as User);
-  // eslint-disable-next-line
-  const [logedIn, setLogedIn] = useState(false);
+  const [, setLogedIn] = useState(false);
 
   async function createUser(user: User) {
     await api.post('/user', user)
-    .then(response => {
-      const newUser = response.config.data;
-      setUser(JSON.parse(newUser));
+    .then(response => {      
       toast.success("Usuário cadastrado com sucesso");
-      history.push('/');
+
+      var millisecondsToWait = 4500;
+      setTimeout(function() {
+        history.push("/")
+      }, millisecondsToWait);
 
     }).catch((err) => {
       toast.error("Erro ao cadastrar usuário");
@@ -135,7 +135,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider value={{ 
-      user,
+      // user,
       recovery,       
       createUser, 
       signIn, 
