@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ProductFormatted } from "../../types";
 import { formatPrice } from "../../util/format";
 import { ButtonCart } from "../ButtonCart";
@@ -11,6 +12,8 @@ export function Product({ produto }: ProductProps) {
 
   produto.promotionPriceFormatted = formatPrice(produto.preco! - (produto.preco! * (Number(produto.desconto) / 100)))
   produto.priceFormatted = formatPrice(Number(produto.preco))
+
+  const [count, setCount] = useState(1);
 
   return (
     <Container>
@@ -32,9 +35,9 @@ export function Product({ produto }: ProductProps) {
         
         <div className="cart">
           <div className="quantidadeProduto">
-            <button>-</button>
-            <p>1</p>
-            <button>+</button>
+            <button onClick={() => setCount(count - 1)}>-</button>
+            <p>{count}</p>
+            <button onClick={() => setCount(count + 1)}>+</button>
           </div>
             <ButtonCart />
         </div>
