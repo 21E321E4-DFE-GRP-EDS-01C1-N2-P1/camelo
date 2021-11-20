@@ -6,10 +6,10 @@ export interface Product {
   desconto?: number;
 }
 
-export interface Card {
+export interface Cartao {
   id: number;
-  name: string;
-  number: string;
-  expiry: string;
-  cvv: string;
+  numero: string;
+  nome: string;
+  vencimento: string;
+  cvv: number;
 }
