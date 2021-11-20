@@ -27,3 +27,8 @@ export interface CategoryDetailsProps {
   id: number;
   descricao: string;
 }
+
+export interface ProductFormatted extends ProductDetailsProps {
+  priceFormatted: string;
+  promotionPriceFormatted: string;
+}

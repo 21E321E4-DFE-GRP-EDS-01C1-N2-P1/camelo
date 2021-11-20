@@ -9,15 +9,14 @@ import Info from "../../components/Info";
 import { Product } from "../../components/Product";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { Footer } from "../../components/Footer";
-import { ProductDetailsProps } from "../../types";
+import { ProductFormatted } from "../../types";
 
 export default function ProductDetails({ ...props }) {
-  const [produto, setProduto] = useState<ProductDetailsProps>({} as ProductDetailsProps);
+  const [produto, setProduto] = useState<ProductFormatted>({} as ProductFormatted);
   const { id } = props.match.params;
 
   useEffect(() => {
-    api
-      .get<ProductDetailsProps>(`/produtos/categorizado/${id}`)
+    api.get<ProductFormatted>(`/produtos/categorizado/${id}`)
       .then((response) => {
         setProduto(response.data);
       })

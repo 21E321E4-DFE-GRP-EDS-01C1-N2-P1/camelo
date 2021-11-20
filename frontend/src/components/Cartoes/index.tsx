@@ -18,7 +18,7 @@ export function Cartoes() {
       <tbody>
         {response?.content ? (
           response?.content.map((cartao) => (
-            <tr>
+            <tr key={cartao.id}>
               <td>{cartao.numero}</td>
               <td>{cartao.vencimento}</td>
               <td>{cartao.cvv}</td>
