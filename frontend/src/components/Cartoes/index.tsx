@@ -5,7 +5,7 @@ import { useCard } from "../../hooks/useCard";
 import { Table } from "./styles";
 
 export function Cartoes() {
-  const { response, items, loadCardsOffUser, addPage } = useCard();
+  const { response, loadCardsOffUser } = useCard();
   const [ carregado, setCarregado ] = useState(false);
 
   useEffect(() => {
@@ -24,12 +24,8 @@ export function Cartoes() {
       }, 1000);
     }
 
-    if (carregado && items.length === 0) {
-      addPage();
-    }
-    
     setCarregado(true);
-  }, [carregado, response, loadCardsOffUser, addPage, items.length]);
+  }, [carregado, response, loadCardsOffUser]);
 
   if (carregado) {
     return (
@@ -55,14 +51,7 @@ export function Cartoes() {
                 <td>sem cartoes</td>
             </tr>
           )}
-        </tbody>
-        <tfoot>
-          <tr>
-            {items.map((it) => (
-              <button>{it}</button>
-            ))}
-          </tr>
-        </tfoot>
+        </tbody>        
       </Table>
     )
   } else {

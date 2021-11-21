@@ -11,10 +11,8 @@ interface CardsProviderProps {
 
 interface CardsContextData {
   response?: Response;
-  items: number[];
   save: (pagamento: Pagamento) => Promise<void>;
   loadCardsOffUser: () => Promise<void>;
-  addPage: () => void;
 }
 
 interface Pagamento {
@@ -38,7 +36,6 @@ export function CardsProvider({ children }: CardsProviderProps) {
   
   const [response, setResponse] = useState<Response>();  
   const [page,] = useState<number>(0);
-  const [items, setItems] = useState<number[]>([]);
 
   async function loadCardsOffUser(): Promise<void> {
     api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
@@ -52,18 +49,6 @@ export function CardsProvider({ children }: CardsProviderProps) {
     .catch((err) => {
       toast.error("Erro ao consultar cartões.");
     });
-  }
-
-  function addPage():void {
-    if (response !== null) {
-      const totalPage = response?.totalPages;
-
-      if (totalPage) {
-        for (let i = 1; i <= totalPage; i++) {
-          setItems([...items, i]);
-        }
-      }
-    }
   }
 
   async function save(payment: Pagamento):Promise<void> {
@@ -81,9 +66,7 @@ export function CardsProvider({ children }: CardsProviderProps) {
   return (
     <CardContext.Provider value={{
       response,
-      addPage,
       save,
-      items,
       loadCardsOffUser
     }}>
       {children}

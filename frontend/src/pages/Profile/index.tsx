@@ -69,8 +69,7 @@ export function Profile() {
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
-      />
+        pauseOnHover />
 
       <Header />
       <HeaderMobile />
