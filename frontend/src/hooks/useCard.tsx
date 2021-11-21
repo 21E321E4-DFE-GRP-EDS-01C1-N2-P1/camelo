@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { Cartao } from "../types";
-
 import { toast } from 'react-toastify';
 
+import history from "../history";
 import api from "../services/api";
+import { Cartao } from "../types";
 
 interface CardsProviderProps {
   children: ReactNode;
@@ -13,6 +13,8 @@ interface CardsContextData {
   response?: Response;
   items: number[];
   save: (pagamento: Pagamento) => Promise<void>;
+  loadCardsOffUser: () => Promise<void>;
+  addPage: () => void;
 }
 
 interface Pagamento {
@@ -33,34 +35,34 @@ interface Response {
 const CardContext = createContext<CardsContextData>({} as CardsContextData);
 
 export function CardsProvider({ children }: CardsProviderProps) {
+  
   const [response, setResponse] = useState<Response>();  
-  const [page, setPage] = useState<number>(0);
+  const [page,] = useState<number>(0);
   const [items, setItems] = useState<number[]>([]);
 
-  // useEffect(() => {
-  //   async function getCards() {
-  //     api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
-  
-  //     const url = `/pagamento?page=${page}&linesPerPage=3`;
-  
-  //     await api.get<Response>(url)
-  //     .then(res => {
-  //       setResponse(res.data);         
-  //     })
-  //     .catch((err) => {
-  //       toast.error("Erro ao consultar cartões.");
-  //     });
-  //   }
-  //   getCards();
-  //   renderTFooterPaginator();
-  // }, []);
+  async function loadCardsOffUser(): Promise<void> {
+    api.defaults.headers.common['Authorization'] = localStorage.getItem("token")
 
-  function renderTFooterPaginator() {
-    if (response && response.totalPages > 0) {
-      for(let i = 0; i < response.totalPages; i++) {
-        setItems([i]);
-        console.log(response.totalPages);
-      }            
+    const url = `/pagamento?page=${page}&linesPerPage=3`;
+
+    await api.get<Response>(url)
+    .then(res => {
+      setResponse(res.data);         
+    })
+    .catch((err) => {
+      toast.error("Erro ao consultar cartões.");
+    });
+  }
+
+  function addPage():void {
+    if (response !== null) {
+      const totalPage = response?.totalPages;
+
+      if (totalPage) {
+        for (let i = 1; i <= totalPage; i++) {
+          setItems([...items, i]);
+        }
+      }
     }
   }
 
@@ -69,7 +71,7 @@ export function CardsProvider({ children }: CardsProviderProps) {
 
     await api.post('pagamento', payment)
     .then(response => {
-      // getCards();
+      history.push('/home');
       toast.success("Pagamento cadastrado com sucesso.");
     }).catch((err) => {
       toast.error("Erro ao cadastrar forma de pagamento");
@@ -79,8 +81,10 @@ export function CardsProvider({ children }: CardsProviderProps) {
   return (
     <CardContext.Provider value={{
       response,
+      addPage,
       save,
-      items
+      items,
+      loadCardsOffUser
     }}>
       {children}
     </CardContext.Provider>
