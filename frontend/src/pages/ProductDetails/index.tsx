@@ -10,6 +10,7 @@ import { Product } from "../../components/Product";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { Footer } from "../../components/Footer";
 import { ProductFormatted } from "../../types";
+import { FooterDesktop } from "../../components/FooterDesktop";
 
 export default function ProductDetails({ ...props }) {
   const [produto, setProduto] = useState<ProductFormatted>({} as ProductFormatted);
@@ -46,6 +47,7 @@ export default function ProductDetails({ ...props }) {
       <Container>
         <Product produto={produto} />
       </Container>
+      <FooterDesktop />
       <Footer />
     </>
   );

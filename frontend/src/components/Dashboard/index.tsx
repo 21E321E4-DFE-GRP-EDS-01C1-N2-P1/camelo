@@ -7,9 +7,7 @@ import { Products } from "../Products";
 import price  from '../../assets/price.svg';
 import shipping  from '../../assets/shipping.svg';
 import support  from '../../assets/support.svg';
-import logo from '../../assets/logo.svg';
-import fb from '../../assets/facebook.svg';
-import tt from '../../assets/twitter.svg';
+
 
 import { 
   DashboardHeader, 
@@ -17,10 +15,6 @@ import {
   Container, 
   PlataformInfo,
   PlataformInfoItem,
-  Footer,
-  FooterEmpresa,
-  FooterSocial,
-  FooterContato
 } from "./styles";
 
 export function Dashboard() {
@@ -77,34 +71,6 @@ export function Dashboard() {
           <label>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</label>
         </PlataformInfoItem>        
       </PlataformInfo>
-
-      <Footer>
-
-        <FooterEmpresa>
-          <div>
-            <img src={logo} alt="logo aplicacao" />
-            <h4>Camelo</h4>
-          </div>
-          <label>Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-        </FooterEmpresa>
-
-        <FooterSocial>
-          <h4>Follow Us</h4>
-          <label>Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-
-          <div>
-            <img src={fb} alt="facebook aplicação" />
-            <img src={tt} alt="twitter aplicação" />
-          </div>
-        </FooterSocial>
-
-        <FooterContato>
-          <h4>Contact Us</h4>
-          <label>Lorem ipsum dolor sit amet consectetur adipisicing elit.</label>
-        </FooterContato>
-
-      </Footer>
     </Container>
-
   );
 }

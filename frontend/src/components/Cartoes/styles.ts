@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
     width: 100%;
-    margin-top: 20px;
+    margin: 2rem 5rem;
     border-spacing: 0 0.5rem;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .5rem;
@@ -11,7 +11,7 @@ export const Table = styled.table`
     th {
       color: #375F9A;
       font-weight: 600;
-      padding: 1rem 2rem;
+      padding: 1rem;
       text-align: center;
       line-height: 1.7rem;
     }

@@ -5,6 +5,7 @@ import {
     Pagination,
     PaginationButton,
     PaginationItem,
+    Container,
 } from './styles';
 
 export function Table() {
@@ -27,7 +28,7 @@ export function Table() {
     }, [])
 
     return (
-        <>
+        <Container>
             <h3>Produtos no Carrinho</h3>
 
             <PTable>
@@ -97,6 +98,6 @@ export function Table() {
                     <PaginationItem>{">"}</PaginationItem>
                 </PaginationButton>                
             </Pagination> */}
-        </>
+        </Container>
     )
 }
