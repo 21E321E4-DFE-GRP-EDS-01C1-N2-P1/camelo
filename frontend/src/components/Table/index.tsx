@@ -82,7 +82,7 @@ export function Table() {
                     </tr>
                 </tbody>
             </PTable>
-            <Pagination>                    
+            {/* <Pagination>                    
                 <PaginationButton>
                     <PaginationItem>{"<"}</PaginationItem>
                     
@@ -96,7 +96,7 @@ export function Table() {
                     
                     <PaginationItem>{">"}</PaginationItem>
                 </PaginationButton>                
-            </Pagination>
+            </Pagination> */}
         </>
     )
 }
