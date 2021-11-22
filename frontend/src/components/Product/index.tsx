@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ProductFormatted } from "../../types";
 import { formatPrice } from "../../util/format";
-import { ButtonCart } from "../ButtonCart";
+import { ButtonCart } from "./styles";
 import { Container } from "./styles";
 import { FaWhatsapp } from "react-icons/fa";
+import { FiShoppingCart } from "react-icons/fi";
 
 interface ProductProps {
   produto: ProductFormatted;
@@ -15,6 +16,10 @@ export function Product({ produto }: ProductProps) {
   produto.priceFormatted = formatPrice(Number(produto.preco))
 
   const [count, setCount] = useState(1);
+
+  function handleAddProduct(product: ProductFormatted) {
+    localStorage.setItem('@cart', JSON.stringify([...JSON.parse(localStorage.getItem('@cart') || '[]'), product]));
+  }
 
   return (
     <Container>
@@ -41,7 +46,10 @@ export function Product({ produto }: ProductProps) {
             <button onClick={() => setCount(count + 1)}>+</button>
           </div>
           <div className="buttons">
-            <ButtonCart />
+            <ButtonCart onClick={() => handleAddProduct(produto)}>
+              <FiShoppingCart />
+              Adicionar
+            </ButtonCart>
             <a href={`https://web.whatsapp.com/send?text=${window.location.href}`} target="_blank" rel="noreferrer">
               <FaWhatsapp size={20} />
             </a>

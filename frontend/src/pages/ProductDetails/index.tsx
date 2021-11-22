@@ -4,13 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import api from "../../services/api";
 
 import { Header } from "../../components/Header";
-import { Container } from "../../components/Container";
 import Info from "../../components/Info";
 import { Product } from "../../components/Product";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { Footer } from "../../components/Footer";
 import { ProductFormatted } from "../../types";
 import { FooterDesktop } from "../../components/FooterDesktop";
+import { Container } from "./styles";
 
 export default function ProductDetails({ ...props }) {
   const [produto, setProduto] = useState<ProductFormatted>({} as ProductFormatted);

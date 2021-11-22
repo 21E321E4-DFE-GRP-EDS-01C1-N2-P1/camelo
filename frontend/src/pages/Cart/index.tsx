@@ -2,14 +2,17 @@ import { ToastContainer } from "react-toastify";
 import { Header } from "../../components/Header";
 import { HeaderMobile } from "../../components/HeaderMobile";
 
-// import { Container } from "../../components/Container";
 import { Table } from "../../components/Table";
 import { CheckOut, Container, Cupom, Summary } from "./styles";
 import Info from "../../components/Info";
 import { FooterDesktop } from "../../components/FooterDesktop";
 import { Footer } from "../../components/Footer";
+import { useEffect, useState } from "react";
+import { ProductFormatted } from "../../types";
 
 export default function Cart() {
+
+
   return (
     <>
       <ToastContainer
