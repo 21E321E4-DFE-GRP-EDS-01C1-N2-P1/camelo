@@ -17,6 +17,7 @@ import { Cartoes } from '../../components/Cartoes';
 
 import { useProfile } from "../../hooks/UseProfile";
 import { useModal } from "../../hooks/useModal";
+import { FooterDesktop } from "../../components/FooterDesktop";
 
 export function Profile() {
 
@@ -158,6 +159,7 @@ export function Profile() {
         </CardArea>
 
       </Container>
+      <FooterDesktop />
       <Footer />
     </>
   );

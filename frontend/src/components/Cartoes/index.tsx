@@ -34,7 +34,6 @@ export function Cartoes() {
           <tr>
             <th>Número</th>
             <th>vencimento</th>
-            <th>cvv</th>
           </tr>
         </thead>
         <tbody>
@@ -43,7 +42,6 @@ export function Cartoes() {
               <tr key={cartao.id}>
                 <td>{cartao.numero}</td>
                 <td>{cartao.vencimento}</td>
-                <td>{cartao.cvv}</td>
               </tr>
             ))
           ) : (

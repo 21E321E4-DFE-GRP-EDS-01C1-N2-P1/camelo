@@ -15,8 +15,8 @@ export const Container = styled.div`
     }
 
     img {
-        height: 12rem;
-        width: 12rem;
+        height: 15rem;
+        width: 15rem;
     }
 
     section {

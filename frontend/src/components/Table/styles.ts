@@ -1,8 +1,11 @@
-
 import styled from "styled-components";
 
+export const Container = styled.table`
+
+`;
+
 export const PTable = styled.table`
-    width: 500px;
+    width: 100%;
     border-collapse: collapse;
     background: var(--background);
 
@@ -13,8 +16,6 @@ export const PTable = styled.table`
     }
 
     tbody {
-        
-
         tr {
             text-align: left;
             border-bottom: 1px solid var(--gray-light);
@@ -46,11 +47,34 @@ export const PTable = styled.table`
 
                 label {
                     width: 100%;
-                    font-weight: 700;
                 }
             }
-
         }        
+    }
+
+    @media(pointer: coarse)  {
+        thead tr { 
+            display: none;
+        }
+        
+        tr { border: 1px solid #ccc; }
+        
+        td { 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: none;
+            border-bottom: 1px solid #eee; 
+        }
+
+        label {
+            display: none;
+        }
+        
+        td:nth-of-type(2):before { content: "Produto: "; }
+        td:nth-of-type(3):before { content: "Preço: "; }
+        td:nth-of-type(4):before { content: "Quantidade: "; }
+        td:nth-of-type(5):before { content: "Total: "; }
     }
 `;
 
