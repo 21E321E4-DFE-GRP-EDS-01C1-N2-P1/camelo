@@ -131,6 +131,7 @@ export function UserProvider({ children }: UserProviderProps) {
     setLogedIn(false);
     localStorage.removeItem('token');
     localStorage.removeItem('@usuario');
+    localStorage.removeItem('@cart');
     history.push('/');
   }
 
