@@ -19,7 +19,11 @@ export default function ProductDetails({ ...props }) {
   useEffect(() => {
     api.get<ProductFormatted>(`/produtos/categorizado/${id}`)
       .then((response) => {
-        setProduto(response.data);
+        const newProduct = {
+          ...response.data,
+          favorited: false
+        };
+        setProduto(newProduct);
       })
       .catch((err) => {
         toast.error("Produto não localizado");

@@ -1,62 +1,70 @@
-import { FiUser, FiShoppingCart, FiLogOut } from "react-icons/fi";
+import { FiUser, FiShoppingCart, FiLogOut, FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 import logoImg from "../../assets/logo.svg";
 import { useProfile } from "../../hooks/UseProfile";
 
-import { 
-    Container, 
-    Content, 
-    NavigationArea, 
-    ProfileArea,
-    NavigationButton
+import {
+  Container,
+  Content,
+  NavigationArea,
+  ProfileArea,
+  NavigationButton,
 } from "./styles";
 
 interface Props {
-    page?: string;
+  page?: string;
 }
 
 export function Header({ page }: Props) {
-    const { signOut } = useProfile();
+  const { signOut } = useProfile();
 
-    return (
-        <Container>
-            <Content>
-                <ProfileArea>                
-                    <NavigationButton>
-                        <Link to="/profile"> 
-                            <FiUser size={15}/>
-                            <span>Profile</span>
-                        </Link>
-                    </NavigationButton>
+  return (
+    <Container>
+      <Content>
+        <ProfileArea>
+          <NavigationButton>
+            <Link to="/profile">
+              <FiUser size={15} />
+              <span>Profile</span>
+            </Link>
+          </NavigationButton>
 
-                    <NavigationButton>
-                        <Link to="/cart">
-                            <FiShoppingCart size={15}/>
-                            <span>Items</span>
-                        </Link>
-                    </NavigationButton>                                                        
-                </ProfileArea>
+          <NavigationButton>
+            <Link to="/cart">
+              <FiShoppingCart size={15} />
+              <span>Items</span>
+            </Link>
+          </NavigationButton>
+          <NavigationButton>
+            <Link to="/favorites">
+                <FiHeart size={15} />
+                <span>Favorites</span>
+            </Link>
+          </NavigationButton>
+        </ProfileArea>
 
-                <NavigationArea>
-                    <Link to="/home">
-                        <img src={logoImg} alt="logo img" title="logo img"/>
-                    </Link>
+        <NavigationArea>
+          <Link to="/home">
+            <img src={logoImg} alt="logo img" title="logo img" />
+          </Link>
 
-                    <nav>
-                        <ul>
-                            { page ? (
-                                <li>{ page }</li>
-                            ) : (                                
-                                <li><Link to="/home">home</Link></li>
-                            )}
-                        </ul>
-                        <input type="text" placeholder="Buscar produto"/>
-                        <button>Buscar</button>
-                        <FiLogOut size={22} onClick={signOut}/>
-                    </nav>
-                </NavigationArea>
-            </Content>
-        </Container>
-    );
+          <nav>
+            <ul>
+              {page ? (
+                <li>{page}</li>
+              ) : (
+                <li>
+                  <Link to="/home">home</Link>
+                </li>
+              )}
+            </ul>
+            <input type="text" placeholder="Buscar produto" />
+            <button>Buscar</button>
+            <FiLogOut size={22} onClick={signOut} />
+          </nav>
+        </NavigationArea>
+      </Content>
+    </Container>
+  );
 }

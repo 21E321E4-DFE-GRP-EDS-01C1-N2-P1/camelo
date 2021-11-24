@@ -9,6 +9,7 @@ import { UserProvider } from "./hooks/UseProfile";
 import { ModalProvider } from "./hooks/useModal";
 import { CardsProvider } from "./hooks/useCard";
 import { CartProvider } from "./hooks/useCart";
+import { FavoritesProvider } from "./hooks/useFavorites";
 
 Modal.setAppElement("#root");
 
@@ -17,6 +18,7 @@ function App() {
     <UserProvider>
       <ProductsProvider>
         <CartProvider>
+          <FavoritesProvider>
           <ModalProvider>
             <CardsProvider>
               <Router history={history}>
@@ -25,6 +27,7 @@ function App() {
               <GlobalStyle />
             </CardsProvider>
           </ModalProvider>
+          </FavoritesProvider>
         </CartProvider>
       </ProductsProvider>
     </UserProvider>

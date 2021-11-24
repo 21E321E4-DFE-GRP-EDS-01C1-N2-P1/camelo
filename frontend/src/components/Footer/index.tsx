@@ -21,7 +21,7 @@ export function Footer() {
         </MenuItem>
         <MenuItem>
           <FiHeart size={16} />
-          <Link to="/home">Favorites</Link>
+          <Link to="/favorites">Favorites</Link>
         </MenuItem>
       </Content>
     </Container>

@@ -33,4 +33,5 @@ export interface ProductFormatted extends ProductDetailsProps {
   promotionPriceFormatted: string;
   quantidade?: number;
   total?: number;
+  favorited?: boolean;
 }

@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp";
 import { Profile } from "../pages/Profile";
 import Recovery from '../pages/Recovery'
 import ProductDetails from "../pages/ProductDetails";
+import { Favorites } from "../pages/favorites";
 
 export default function Routes() {
   return (
@@ -17,6 +18,7 @@ export default function Routes() {
       <Route path="/productDetails/:id+" component={ProductDetails} />
       <Route path="/profile" component={Profile } />
       <Route path="/recovery" component={Recovery} />
+      <Route path="/favorites" component={Favorites} />
     </Switch>
   );
 }

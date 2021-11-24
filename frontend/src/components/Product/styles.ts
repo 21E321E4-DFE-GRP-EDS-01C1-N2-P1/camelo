@@ -73,7 +73,30 @@ export const Container = styled.div`
                     padding: .5rem;
                     border-radius: 50%;
                     color: var(--background);
-                    margin-left: .5rem;
+                    margin: 0 .5rem;
+                }
+            }
+
+            .unfavorited {
+                border: 0;
+                background: transparent;
+                display: flex;
+                align-items: center;
+                
+                svg {
+                    color: var(--red);
+                }
+
+            }
+
+            .favorited {
+                border: 0;
+                background: transparent;
+                display: flex;
+                align-items: center;
+
+                svg {
+                    color: var(--text);
                 }
             }
         }
