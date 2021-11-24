@@ -1,5 +1,4 @@
 import { Footer, FooterContato, FooterEmpresa, FooterSocial } from "./styles";
-import logo from "../../assets/logo.svg";
 import fb from "../../assets/facebook.svg";
 import tt from "../../assets/twitter.svg";
 

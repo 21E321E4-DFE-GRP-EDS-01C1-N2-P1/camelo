@@ -31,4 +31,5 @@ export interface CategoryDetailsProps {
 export interface ProductFormatted extends ProductDetailsProps {
   priceFormatted: string;
   promotionPriceFormatted: string;
+  quantidade?: number;
 }

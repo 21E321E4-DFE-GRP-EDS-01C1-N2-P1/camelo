@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import { ProductFormatted } from "../../types";
+import { useCart } from "../../hooks/useCart";
 
 import { PTable, Container } from "./styles";
 
 export function Table() {
-  const [cart, setCart] = useState<ProductFormatted[]>(() => {
-    const storagedCart = localStorage.getItem("@cart");
-    return storagedCart ? JSON.parse(storagedCart) : [];
-  });
+  const { cart, handleRemoveProduct } = useCart();
 
   return (
     <Container>
@@ -24,10 +20,10 @@ export function Table() {
           </tr>
         </thead>
         <tbody>
-          {cart.map((produto) => (
+          {cart?.map((produto) => (
             <tr key={produto.id}>
               <td>
-                <button>x</button>
+                <button onClick={() => handleRemoveProduct(Number(produto.id))}>x</button>
               </td>
               <td>
                 <div>
@@ -36,8 +32,8 @@ export function Table() {
                 </div>
               </td>
               <td>{produto.promotionPriceFormatted}</td>
-              <td>2</td>
-              <td>{produto.preco! * 2}</td>
+              <td>{produto.quantidade}</td>
+              <td>{produto.promotionPriceFormatted}</td>
             </tr>
           ))}
         </tbody>

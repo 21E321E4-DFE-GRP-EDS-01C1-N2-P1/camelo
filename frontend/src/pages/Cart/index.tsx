@@ -7,11 +7,10 @@ import { CheckOut, Container, Cupom, Summary } from "./styles";
 import Info from "../../components/Info";
 import { FooterDesktop } from "../../components/FooterDesktop";
 import { Footer } from "../../components/Footer";
-import { useEffect, useState } from "react";
-import { ProductFormatted } from "../../types";
+import { useCart } from "../../hooks/useCart";
 
 export default function Cart() {
-
+  const { cart } = useCart();
 
   return (
     <>
@@ -30,7 +29,7 @@ export default function Cart() {
       <HeaderMobile />
       <Info breadCrumbs={["HOME", "CARRINHO"]} />
       <Container>
-        <Table />
+        {cart.length > 0 ? <Table /> : <p>Carrinho Vazio</p>}
         <CheckOut>
           <Cupom>
             <input type="text" placeholder="Cupom" />
@@ -55,8 +54,10 @@ export default function Cart() {
                 </tr>
               </tbody>
               <tfoot>
-                <th>TOTAL</th>
-                <td>220.00</td>
+                <tr>
+                  <th>TOTAL</th>
+                  <td>220.00</td>
+                </tr>
               </tfoot>
             </table>
             <button>Finalizar</button>

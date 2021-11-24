@@ -5,6 +5,7 @@ import { ButtonCart } from "./styles";
 import { Container } from "./styles";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { useCart } from "../../hooks/useCart";
 
 interface ProductProps {
   produto: ProductFormatted;
@@ -16,10 +17,7 @@ export function Product({ produto }: ProductProps) {
   produto.priceFormatted = formatPrice(Number(produto.preco))
 
   const [count, setCount] = useState(1);
-
-  function handleAddProduct(product: ProductFormatted) {
-    localStorage.setItem('@cart', JSON.stringify([...JSON.parse(localStorage.getItem('@cart') || '[]'), product]));
-  }
+  const { handleAddProduct } = useCart();
 
   return (
     <Container>
@@ -41,12 +39,14 @@ export function Product({ produto }: ProductProps) {
         
         <div className="cart">
           <div className="quantidadeProduto">
-            <button onClick={() => setCount(count - 1)}>-</button>
+            <button 
+              onClick={() => setCount(count - 1)}
+              disabled={count <= 1} >-</button>
             <p>{count}</p>
             <button onClick={() => setCount(count + 1)}>+</button>
           </div>
           <div className="buttons">
-            <ButtonCart onClick={() => handleAddProduct(produto)}>
+            <ButtonCart onClick={() => handleAddProduct(produto, count)}>
               <FiShoppingCart />
               Adicionar
             </ButtonCart>
