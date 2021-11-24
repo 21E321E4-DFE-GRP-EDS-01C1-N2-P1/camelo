@@ -39,9 +39,8 @@ export function Dashboard() {
 
       <DashboardMain>
         {products.map((product) => (
-          <Link to={`/productDetails/${product.id}`}>
+          <Link to={`/productDetails/${product.id}`} key={product.id}>
             <Products
-              key={product.id}
               name={product.nome}
               image={product.url}
               promotionPrice={product.promotionPriceFormatted}
