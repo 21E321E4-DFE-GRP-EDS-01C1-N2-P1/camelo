@@ -21,6 +21,7 @@ export default function Cart() {
     var totalProduct = list.reduce((total, value) => total + value, 0);
     setTotal(totalProduct)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
 
