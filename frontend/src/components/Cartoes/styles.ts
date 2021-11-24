@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Table = styled.table`
     width: 100%;
-    margin: 2rem 5rem;
+    margin: 2rem;
     border-spacing: 0 0.5rem;
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .5rem;
@@ -28,27 +28,4 @@ export const Table = styled.table`
     tfoot {
       display: flex;      
     }
-
-    
-
-    tfoot tr button {
-      width: 15px;
-      height: 30px;
-      background: var(--blue-light);
-      border: none;
-      border-radius: 5px;            
-    }
-
-    tfoot tr button:hover {
-      filter: opacity(0.5);
-    }
-
-    tfoot tr button:first-child {
-      margin-left: 5px;
-    }
-
-    tfoot tr button + button {
-      margin: 0 20px;
-    }
-
 `;

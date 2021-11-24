@@ -33,14 +33,16 @@ export function Cartoes() {
         <thead>
           <tr>
             <th>Número</th>
-            <th>vencimento</th>
+            <th>Titular</th>
+            <th>Data</th>
           </tr>
         </thead>
         <tbody>
           {response?.content ? (
             response?.content.map((cartao) => (
               <tr key={cartao.id}>
-                <td>{cartao.numero}</td>
+                <td>{`**** **** **** ${cartao.numero.slice(-4)}`}</td>
+                <td>{cartao.nome}</td>
                 <td>{cartao.vencimento}</td>
               </tr>
             ))

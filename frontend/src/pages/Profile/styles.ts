@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  @media(pointer: fine) {
+  /* @media(pointer: fine) {
     width: 100vw;
     height: 100vh;
-  }
+  } */
 
   display: flex;
   flex-direction: column;
@@ -18,11 +18,12 @@ export const Card = styled.div`
     margin: 1rem;
   }
 
+  margin-top: 5rem;
   border-radius: 12px;
   box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
   background-color: #fff;
   color: #252422;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
   border: 0;
   display: flex;
   flex-direction: column;
