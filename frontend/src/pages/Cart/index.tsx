@@ -8,9 +8,31 @@ import Info from "../../components/Info";
 import { FooterDesktop } from "../../components/FooterDesktop";
 import { Footer } from "../../components/Footer";
 import { useCart } from "../../hooks/useCart";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
   const { cart } = useCart();
+  const [subtotal, setSubtotal] = useState<number[]>([]);
+  const [total, setTotal] = useState(0);
+
+  // useEffect(() => {
+  //   function sumSubTotal() {
+  //     let sumSubTotal = 0;
+  //     cart.forEach((item) => {
+  //       sumSubTotal = item.preco! - (item.preco! * item.desconto!) / 100;
+  //     });
+  //     setSubtotal([...subtotal, sumSubTotal]);
+  //   }
+  
+  //   function sumTotal() {
+  //     let sumTotal = 0;
+  //     subtotal.forEach((item) => {
+  //       sumTotal += item;
+  //     });
+  //     setTotal(sumTotal);
+  //   }
+  // }, []);
+
 
   return (
     <>
@@ -29,7 +51,7 @@ export default function Cart() {
       <HeaderMobile />
       <Info breadCrumbs={["HOME", "CARRINHO"]} />
       <Container>
-        {cart.length > 0 ? <Table /> : <p>Carrinho Vazio</p>}
+        {cart.length > 0 ? <Table /> : <p className="cartEmpty">Carrinho Vazio</p>}
         <CheckOut>
           <Cupom>
             <input type="text" placeholder="Cupom" />
@@ -40,12 +62,12 @@ export default function Cart() {
               <tbody>
                 <tr>
                   <th>Subtotal</th>
-                  <td>200.00</td>
+                  <td>{subtotal}</td>
                 </tr>
 
                 <tr>
                   <th>Frete</th>
-                  <td>20.00</td>
+                  <td>GRÁTIS</td>
                 </tr>
 
                 <tr>
@@ -56,7 +78,7 @@ export default function Cart() {
               <tfoot>
                 <tr>
                   <th>TOTAL</th>
-                  <td>220.00</td>
+                  <td>{total}</td>
                 </tr>
               </tfoot>
             </table>

@@ -4,6 +4,10 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .cartEmpty {
+        margin-top: 2rem;
+    }
 `;
 
 export const CheckOut = styled.div`

@@ -1,9 +1,14 @@
 import { useCart } from "../../hooks/useCart";
+import { formatPrice } from "../../util/format";
 
 import { PTable, Container } from "./styles";
 
 export function Table() {
   const { cart, handleRemoveProduct } = useCart();
+
+  function calculateTotal(value: number, discount: number) {
+    return value - (value * discount) / 100;
+  }
 
   return (
     <Container>
@@ -23,7 +28,9 @@ export function Table() {
           {cart?.map((produto) => (
             <tr key={produto.id}>
               <td>
-                <button onClick={() => handleRemoveProduct(Number(produto.id))}>x</button>
+                <button onClick={() => handleRemoveProduct(Number(produto.id))}>
+                  x
+                </button>
               </td>
               <td>
                 <div>
@@ -33,7 +40,14 @@ export function Table() {
               </td>
               <td>{produto.promotionPriceFormatted}</td>
               <td>{produto.quantidade}</td>
-              <td>{produto.promotionPriceFormatted}</td>
+              <td>
+                {formatPrice(
+                  calculateTotal(
+                    Number(produto.preco),
+                    Number(produto.desconto)
+                  ) * produto.quantidade!
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
