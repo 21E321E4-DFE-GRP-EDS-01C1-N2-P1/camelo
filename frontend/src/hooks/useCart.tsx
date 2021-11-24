@@ -32,7 +32,8 @@ export function CartProvider({ children }: CartProviderProps) {
       } else {
         const newProduct = {
           ...productParam,
-          quantidade: quantity
+          quantidade: quantity,
+          total: calculateTotal(productParam.preco!, productParam.desconto!) * quantity
         }
         updatedCart.push(newProduct);
         setCart(updatedCart);
@@ -60,6 +61,10 @@ export function CartProvider({ children }: CartProviderProps) {
       toast.error('Erro na remoção do produto');
     }
   };
+
+  function calculateTotal(value: number, discount: number) {
+    return value - (value * discount) / 100;
+  }
 
 
   return (

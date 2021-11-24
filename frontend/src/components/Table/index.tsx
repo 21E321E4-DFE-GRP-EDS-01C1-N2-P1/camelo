@@ -6,10 +6,6 @@ import { PTable, Container } from "./styles";
 export function Table() {
   const { cart, handleRemoveProduct } = useCart();
 
-  function calculateTotal(value: number, discount: number) {
-    return value - (value * discount) / 100;
-  }
-
   return (
     <Container>
       <h3>Produtos no Carrinho</h3>
@@ -41,12 +37,7 @@ export function Table() {
               <td>{produto.promotionPriceFormatted}</td>
               <td>{produto.quantidade}</td>
               <td>
-                {formatPrice(
-                  calculateTotal(
-                    Number(produto.preco),
-                    Number(produto.desconto)
-                  ) * produto.quantidade!
-                )}
+                {formatPrice(Number(produto.total))}
               </td>
             </tr>
           ))}

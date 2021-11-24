@@ -9,29 +9,19 @@ import { FooterDesktop } from "../../components/FooterDesktop";
 import { Footer } from "../../components/Footer";
 import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
+import { formatPrice } from "../../util/format";
 
 export default function Cart() {
   const { cart } = useCart();
-  const [subtotal, setSubtotal] = useState<number[]>([]);
   const [total, setTotal] = useState(0);
+  let list: number[] = [];
 
-  // useEffect(() => {
-  //   function sumSubTotal() {
-  //     let sumSubTotal = 0;
-  //     cart.forEach((item) => {
-  //       sumSubTotal = item.preco! - (item.preco! * item.desconto!) / 100;
-  //     });
-  //     setSubtotal([...subtotal, sumSubTotal]);
-  //   }
-  
-  //   function sumTotal() {
-  //     let sumTotal = 0;
-  //     subtotal.forEach((item) => {
-  //       sumTotal += item;
-  //     });
-  //     setTotal(sumTotal);
-  //   }
-  // }, []);
+  useEffect(() => {
+    cart.map((item) => (list.push(item.total!)));
+    var totalProduct = list.reduce((total, value) => total + value, 0);
+    setTotal(totalProduct)
+
+  }, [cart]);
 
 
   return (
@@ -62,7 +52,7 @@ export default function Cart() {
               <tbody>
                 <tr>
                   <th>Subtotal</th>
-                  <td>{subtotal}</td>
+                  <td>{formatPrice(Number(total))}</td>
                 </tr>
 
                 <tr>
@@ -78,7 +68,7 @@ export default function Cart() {
               <tfoot>
                 <tr>
                   <th>TOTAL</th>
-                  <td>{total}</td>
+                  <td>{formatPrice(Number(total))}</td>
                 </tr>
               </tfoot>
             </table>
