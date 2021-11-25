@@ -3,9 +3,12 @@ package com.camelo.camelobackend.datasources.h2.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "PEDIDO")
 public class PedidoModel {
 
     @Id
@@ -15,10 +18,46 @@ public class PedidoModel {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private PagamentoModel pagamento;
+    private Long usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserModel userModel;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Set<ItemPedidoModel> itens = new HashSet<>();
+
+    public PedidoModel() {
+        this.id = null;
+        this.instante = Calendar.getInstance().getTime();
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Date getInstante() {
+        return instante;
+    }
+
+    public void setInstante(Date instante) {
+        this.instante = instante;
+    }
+
+    public Long getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
+    }
+
+    public Set<ItemPedidoModel> getItens() {
+        return itens;
+    }
+
+    public void setItens(Set<ItemPedidoModel> itens) {
+        this.itens = itens;
+    }
 }
