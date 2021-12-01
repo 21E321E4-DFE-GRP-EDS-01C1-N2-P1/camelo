@@ -1,4 +1,4 @@
-package com.camelo.camelobackend.transportlayers;
+package com.camelo.camelobackend.transportlayers.impl;
 
 import com.camelo.camelobackend.interactors.AdicionarFormaDePagamentoUseCase;
 import com.camelo.camelobackend.interactors.ListarPagamentosDoUsuarioUseCase;

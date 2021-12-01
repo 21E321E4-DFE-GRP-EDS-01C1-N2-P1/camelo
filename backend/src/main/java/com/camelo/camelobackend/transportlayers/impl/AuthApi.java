@@ -1,4 +1,4 @@
-package com.camelo.camelobackend.transportlayers;
+package com.camelo.camelobackend.transportlayers.impl;
 
 import com.camelo.camelobackend.domain.UserSS;
 import com.camelo.camelobackend.interactors.AuthService;

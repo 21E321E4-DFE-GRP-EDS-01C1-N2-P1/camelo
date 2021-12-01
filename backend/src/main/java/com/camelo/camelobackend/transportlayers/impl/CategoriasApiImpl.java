@@ -1,4 +1,4 @@
-package com.camelo.camelobackend.transportlayers;
+package com.camelo.camelobackend.transportlayers.impl;
 
 import com.camelo.camelobackend.interactors.BuscarCategoriasUseCase;
 import com.camelo.camelobackend.transportlayers.mapper.CategoriaReponseMapper;

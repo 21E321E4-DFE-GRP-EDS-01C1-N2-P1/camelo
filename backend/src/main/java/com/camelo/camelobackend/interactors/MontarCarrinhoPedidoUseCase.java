@@ -2,7 +2,6 @@ package com.camelo.camelobackend.interactors;
 
 import com.camelo.camelobackend.domain.ItemPedido;
 import com.camelo.camelobackend.domain.Pedido;
-import com.camelo.camelobackend.domain.Produto;
 import com.camelo.camelobackend.ports.PedidoPort;
 import com.camelo.camelobackend.ports.ProdutoPort;
 import com.camelo.camelobackend.transportlayers.dto.Carrinho;
@@ -24,7 +23,7 @@ public class MontarCarrinhoPedidoUseCase {
         this.pedidoPort = pedidoPort;
     }
 
-    public void executar(Carrinho carrinho) {
+    public Pedido executar(Carrinho carrinho) {
 
         var userSS = UserService.authenticated();
         var itensPedidos = new ArrayList<ItemPedido>();
@@ -33,16 +32,14 @@ public class MontarCarrinhoPedidoUseCase {
             for (Selecao produto : carrinho.getProdutos()) {
                 itensPedidos.add( new ItemPedido(produtoPort.obterPor(produto.getId()).getId(), produto.getQtd()));
             }
+            if (itensPedidos.isEmpty()) {
+                throw new RuntimeException("O carrinho não pode estar vazio.");
+            } else {
+                var pedido = new Pedido(itensPedidos, userSS.getId(), carrinho.getPagamento().getNrCartao());
+                return pedidoPort.salvar(pedido);
+            }
         }
 
-        if (itensPedidos.isEmpty()) {
-            throw new RuntimeException("O carrinho não pode estar vazio.");
-        } else {
-
-            var pedido = new Pedido(itensPedidos, userSS.getId(), carrinho.getPagamento().getNrCartao());
-            var salvo = pedidoPort.salvar(pedido);
-        }
-
-        throw new RuntimeException("Usuário não autorizado a realizar compras");
+        throw new RuntimeException("Usuário não ");
     }
 }
