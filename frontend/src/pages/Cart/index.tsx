@@ -10,9 +10,12 @@ import { Footer } from "../../components/Footer";
 import { useCart } from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 import { formatPrice } from "../../util/format";
+import { useModal } from "../../hooks/useModal";
+import { NewPaymentModal } from "../../components/NewPaymentModal";
 
 export default function Cart() {
   const { cart } = useCart();
+  const { isNewModalOpen, handleOpenNewModal, handleCloseNewModal } = useModal();
   const [total, setTotal] = useState(0);
   let list: number[] = [];
 
@@ -73,7 +76,10 @@ export default function Cart() {
                 </tr>
               </tfoot>
             </table>
-            <button>Finalizar</button>
+            <button onClick={handleOpenNewModal}>Finalizar</button>
+            <NewPaymentModal        
+            isOpen={isNewModalOpen}
+            onRequestClose={handleCloseNewModal} />
           </Summary>
         </CheckOut>
       </Container>
