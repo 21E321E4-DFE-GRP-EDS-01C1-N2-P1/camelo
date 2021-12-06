@@ -65,7 +65,11 @@ public class NotificarPedido {
     @Scheduled(fixedDelay = MINUTO, zone = TIME_ZONE)
     public void cancelado() {
         var pedidos = pedidoPort.pesquisarPedidos(CANCELADO);
-        pedidos.forEach(notificarSituacaoPedidoUseCase::executar);
+        pedidos.forEach(it -> {
+            notificarSituacaoPedidoUseCase.executar(it);
+            it.setSituacao("FINALIZADO");
+            pedidoPort.salvar(it);
+        });
     }
 
     @Scheduled(fixedDelay = MINUTO, zone = TIME_ZONE)
