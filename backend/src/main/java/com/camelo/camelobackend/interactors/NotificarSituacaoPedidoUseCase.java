@@ -63,7 +63,7 @@ public class NotificarSituacaoPedidoUseCase {
                 .from(from)
                 .templatePath(TEMPLATE_PATH)
                 .mailTo(usuario.getEmail())
-                .subject(SUBJECT.concat(pedido.getSituacao()))
+                .subject(SUBJECT.concat(pedido.getId().toString()))
                 .props(props)
                 .build();
     }
