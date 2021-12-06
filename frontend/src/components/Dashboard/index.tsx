@@ -24,14 +24,16 @@ export function Dashboard() {
     <Container>
       <DashboardHeader>
         {productsOnSale.map((product) => (
-          <ProductHeader
-            key={product.id}
-            name={product.nome}
-            image={product.url}
-            price={product.priceFormatted}
-            promotionPrice={product.promotionPriceFormatted}
-            promotion={Number(product.desconto)}
-          />
+          <Link to={`/productDetails/${product.id}`} key={product.id}>
+            <ProductHeader
+              key={product.id}
+              name={product.nome}
+              image={product.url}
+              price={product.priceFormatted}
+              promotionPrice={product.promotionPriceFormatted}
+              promotion={Number(product.desconto)}
+            />
+          </Link>
         ))}
       </DashboardHeader>
 
@@ -53,19 +55,19 @@ export function Dashboard() {
 
       <PlataformInfo>
         <PlataformInfoItem>
-          <img src={shipping} alt="free_shipping" />
+          <img src={shipping} alt="free_shipping" title="free_shipping" />
           <h3>FREE SHIPPING</h3>
           <label>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</label>
         </PlataformInfoItem>
 
         <PlataformInfoItem>
-          <img src={price} alt="free_shipping" />
+          <img src={price} alt="free_shipping" title="free_shipping"/>
           <h3>100% REFUND</h3>
           <label>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</label>
         </PlataformInfoItem>
 
         <PlataformInfoItem>
-          <img src={support} alt="free_shipping" />
+          <img src={support} alt="free_shipping" title="free_shipping"/>
           <h3>SUPPORT 24/7</h3>
           <label>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</label>
         </PlataformInfoItem>        

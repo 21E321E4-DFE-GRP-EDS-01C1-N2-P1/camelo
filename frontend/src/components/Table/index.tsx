@@ -30,7 +30,7 @@ export function Table() {
               </td>
               <td>
                 <div>
-                  <img src={produto.url} alt="foto produto" />
+                  <img src={produto.url} alt="foto produto" title="foto produto"/>
                   <label>{produto.nome}</label>
                 </div>
               </td>

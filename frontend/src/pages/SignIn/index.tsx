@@ -36,7 +36,7 @@ export default function SignIn() {
 
       <Content>
         <div className="heading">
-          <img src={LogoImg} alt="Logo Dashboard" />
+          <img src={LogoImg} alt="Logo Dashboard" title="Logo Dashboard"/>
 
           <h1>Login</h1>
         </div>

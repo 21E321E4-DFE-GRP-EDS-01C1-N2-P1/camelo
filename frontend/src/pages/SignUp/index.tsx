@@ -39,7 +39,7 @@ export default function SignUp() {
       />
       <Content>
         <div className="heading">
-          <img src={LogoImg} alt="Logo Dashboard" />
+          <img src={LogoImg} alt="Logo Dashboard" title="Logo Dashboard"/>
 
           <h1>Cadastro</h1>
         </div>

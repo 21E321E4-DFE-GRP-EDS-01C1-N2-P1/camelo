@@ -25,7 +25,7 @@ export function Product({ produto }: ProductProps) {
   
   return (
     <Container>
-      <img src={produto.url} alt="foto produto" />
+      <img src={produto.url} alt="foto produto" title="foto produto" />
       <section>
         <h2>{produto.nome}</h2>
 

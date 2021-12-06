@@ -1,4 +1,4 @@
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Header } from "../../components/Header";
 import { HeaderMobile } from "../../components/HeaderMobile";
 
@@ -27,6 +27,16 @@ export default function Cart() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
+  function oppenModal() {
+
+    if (cart.length === 0) {
+      toast.error("Não há nenhum item no carrinho");
+      return;
+    }
+
+    handleOpenNewModal();
+  }
+
 
   return (
     <>
@@ -46,11 +56,7 @@ export default function Cart() {
       <Info breadCrumbs={["HOME", "CARRINHO"]} />
       <Container>
         {cart.length > 0 ? <Table /> : <p className="cartEmpty">Carrinho Vazio</p>}
-        <CheckOut>
-          <Cupom>
-            <input type="text" placeholder="Cupom" />
-            <button>Incluir</button>
-          </Cupom>
+        <CheckOut>          
           <Summary>
             <table>
               <tbody>
@@ -76,7 +82,7 @@ export default function Cart() {
                 </tr>
               </tfoot>
             </table>
-            <button onClick={handleOpenNewModal}>Finalizar</button>
+            <button onClick={oppenModal}>Finalizar</button>
             <NewPaymentModal        
             isOpen={isNewModalOpen}
             onRequestClose={handleCloseNewModal} />

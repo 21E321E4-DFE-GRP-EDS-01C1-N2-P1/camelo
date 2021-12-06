@@ -26,12 +26,11 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   const { handleOpenNewModal, isNewModalOpen, handleCloseNewModal } = useModal();
 
   const [ carregado, setCarregado ] = useState(false);
-  const[payment, setPayment] = useState([]);
-  const[card, steCard] = useState({});
+  const [nrCartao, setNrCartao] = useState('');
   const[finished, setFinished] = useState(false);
 
   useEffect(() => {
-    
+
     async function loadCards() {
       await loadCardsOffUser();
     }  
@@ -52,31 +51,26 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!payment) {
-      toast.warning("O carrinho não pode estar vazio");
+    if (!response?.content) {
+      toast.error("Cadastre um cartão de pagamento");
     } else {
 
-    }
+      const order: Order = {      
+        produtos: prepareOrder(),
+        pagamento: {
+          nrCartao
+        }
+      };
 
-    if(!card) {
-        console.log("Não tem cartão");
-        toast.warning("Selecione um cartão");
-    }  
-
-    
-    const order: Order = {      
-      produtos: prepareOrder(),
-      pagamento: {
-        nrCartao: ""
+      console.log(order);
+        
+      try {
+        const response = await create( order);      
+        setFinished(response);
+        // history.push("/home");
+      } catch (err) {
+        toast.error("Erro ao realizar o pedido");
       }
-    };
-      
-    try {
-      const response = await create( order);      
-      setFinished(response);
-      history.push("/home");
-    } catch (err) {
-      toast.error("Erro ao realizar o pedido");
     }
   }
 
@@ -97,7 +91,8 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
 
   function closeModal() {
     setFinished(false);
-    onRequestClose();
+    window.location.reload();
+    // onRequestClose();
   }
 
   return (
@@ -109,19 +104,19 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
     >{finished ? 
       <>
         <button type="button" onClick={() => closeModal()} className="react-modal-close">
-          <img src={closeImg} alt="Fechar" />
+          <img src={closeImg} alt="Fechar" title="Fechar" />
         </button>
         <Container>
           <div className="paymentSuccess">
             <h2>Pagamento finalizado com sucesso!</h2>
-            <img src={sucessImg} alt="sucesso img" />
+            <img src={sucessImg} alt="sucesso img" title="sucesso img"/>
           </div>
         </Container> 
       </> 
       :
       <>
         <button type="button" onClick={() => closeModal()} className="react-modal-close">
-          <img src={closeImg} alt="Fechar" />
+          <img src={closeImg} alt="Fechar" title="Fechar"/>
         </button>
         <Container>
           <h2>Finalizar Pagamento</h2>
@@ -132,7 +127,7 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
               {response?.content ? 
                 response?.content.map(cartao => (
                   <div key={cartao.id}>
-                    <input id="card" type="radio" value={cartao.numero} />
+                    <input id="card" type="radio" value={cartao.numero} onClick={() => setNrCartao(cartao.numero)}/>
                     <label htmlFor="card"> {`**** **** **** ${cartao.numero.slice(-4)}`}</label>
                   </div>
                 )) : 

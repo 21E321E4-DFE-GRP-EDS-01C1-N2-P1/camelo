@@ -14,7 +14,7 @@ export function Products({ name, image, price, promotionPrice, promotion }: Prod
     return (
         <>
             <Product>
-                <img src={image ? image : notFound} alt="foto produto"/>
+                <img src={image ? image : notFound} alt="foto produto" title="foto produto" />
                 <p className="title">{name}</p>
                 <div>
                     <p className={`${!promotion ? '' : 'promocao'}`}>{price}</p>

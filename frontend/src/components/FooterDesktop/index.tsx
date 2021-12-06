@@ -22,8 +22,8 @@ export function FooterDesktop() {
           </p>
 
           <div>
-            <img src={fb} alt="facebook aplicação" />
-            <img src={tt} alt="twitter aplicação" />
+            <img src={fb} alt="facebook aplicação" title="facebook aplicação" />
+            <img src={tt} alt="twitter aplicação" title="twitter aplicação" />
           </div>
         </FooterSocial>
 

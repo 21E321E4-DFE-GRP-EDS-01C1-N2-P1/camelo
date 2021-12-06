@@ -18,9 +18,11 @@ import { Cartoes } from '../../components/Cartoes';
 import { useProfile } from "../../hooks/UseProfile";
 import { useModal } from "../../hooks/useModal";
 import { FooterDesktop } from "../../components/FooterDesktop";
+import { Loader } from "../../components/Loader";
 
 export function Profile() {
 
+  const [processing, setProcessing] = useState(false);
   const { updateUser } = useProfile();
   const { isNewModalOpen, handleOpenNewModal, handleCloseNewModal } = useModal();
   const [email, setEmail] = useState("");
@@ -60,6 +62,31 @@ export function Profile() {
     }
   }
 
+  async function callViaCep() {
+    
+    var url = `https://viacep.com.br/ws/${cep}/json/`
+
+    setProcessing(true);
+    
+    setTimeout(async () => {
+      try {
+        const response = await fetch(
+          url,  
+        );
+        
+        const data = await response.json();
+    
+        setCidade(data.localidade);
+        setBairro(data.bairro);
+        setEndereco(data.logradouro);
+        setProcessing(false);
+      } catch (error) {
+        toast.error("CEP não encontrado");
+        setProcessing(false);
+      }      
+    }, 1000);
+  }
+
   return (
     <>
       <ToastContainer
@@ -76,6 +103,7 @@ export function Profile() {
       <HeaderMobile />
       <Container>
         <Card>
+          <Loader enable={processing}/>
           <h2>Editar Perfil</h2>
           <form>
             <div className="row">
@@ -104,6 +132,7 @@ export function Profile() {
               <div className="column">
                 <label>Cep</label>
                 <input
+                  onBlur={() => callViaCep()}
                   type="text"
                   placeholder="Informe seu cep"
                   value={cep}
@@ -114,6 +143,7 @@ export function Profile() {
               <div className="column">
                 <label>Bairro</label>
                 <input
+                  disabled
                   type="text"
                   placeholder="Informe seu bairro"
                   value={bairro}
@@ -124,6 +154,7 @@ export function Profile() {
               <div className="column">
                 <label>Cidade</label>
                 <input
+                  disabled
                   type="text"
                   placeholder="Informe sua cidade"
                   value={cidade}
@@ -134,6 +165,7 @@ export function Profile() {
             <div className="column">
               <label>Endereço</label>
               <input
+                disabled
                 type="text"
                 placeholder="Informe seu endereço"
                 value={endereco}

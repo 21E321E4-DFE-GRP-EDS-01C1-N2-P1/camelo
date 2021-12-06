@@ -20,7 +20,7 @@ export function Favorites() {
             {favorites.map((product) => (
               <Link to={`/productDetails/${product.id}`} key={product.id}>
                 <Product>
-                  <img src={product.url ? product.url : notFound} alt="foto produto" />
+                  <img src={product.url ? product.url : notFound} alt="foto produto" title="foto produto"/>
                   <p className="title">{product.nome}</p>
                   <div>
                     <p className={`${!product.desconto ? "" : "promocao"}`}>{product.priceFormatted}</p>

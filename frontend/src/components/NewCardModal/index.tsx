@@ -57,7 +57,7 @@ export function NewCardModal({ isOpen, onRequestClose }: NewCardModalProps) {
       className="react-modal-content"
     >
       <button type="button" onClick={onRequestClose} className="react-modal-close">
-        <img src={closeImg} alt="Fechar" />
+        <img src={closeImg} alt="Fechar" title="Fechar"/>
       </button>
       <Container>
         <h2>Cadastrar Cartão</h2>
