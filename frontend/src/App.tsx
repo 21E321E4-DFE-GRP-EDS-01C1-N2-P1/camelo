@@ -10,6 +10,7 @@ import { ModalProvider } from "./hooks/useModal";
 import { CardsProvider } from "./hooks/useCard";
 import { CartProvider } from "./hooks/useCart";
 import { FavoritesProvider } from "./hooks/useFavorites";
+import { CheckoutProvider } from './hooks/useCheckout';
 
 Modal.setAppElement("#root");
 
@@ -21,10 +22,12 @@ function App() {
           <FavoritesProvider>
           <ModalProvider>
             <CardsProvider>
-              <Router history={history}>
-                <Routes />
-              </Router>
-              <GlobalStyle />
+              <CheckoutProvider>
+                <Router history={history}>
+                  <Routes />
+                </Router>
+                <GlobalStyle />
+              </CheckoutProvider>
             </CardsProvider>
           </ModalProvider>
           </FavoritesProvider>

@@ -5,10 +5,12 @@ import { toast } from "react-toastify";
 import { Container } from "./styles";
 import closeImg from "../../assets/close.svg";
 
+import { useCart } from '../../hooks/useCart';
 import { useCard } from '../../hooks/useCard';
 import { useModal } from "../../hooks/useModal";
-
+import { useCheckout } from '../../hooks/useCheckout';
 import sucessImg from "../../assets/Success.svg";
+import { Order, OrderItem } from '../../util/format'
 
 interface NewPaymentModalProps {
   isOpen: boolean;
@@ -16,8 +18,9 @@ interface NewPaymentModalProps {
 }
 
 export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps) {
-  
+  const { cart } = useCart();
   const { response, loadCardsOffUser } = useCard();
+  const { create } = useCheckout();
   const { handleOpenNewModal, isNewModalOpen, handleCloseNewModal } = useModal();
 
   const [ carregado, setCarregado ] = useState(false);
@@ -47,18 +50,49 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    // if (!payment) {
-    //   toast.warning("O carrinho não pode estar vazio");
-    // }
+    if (!payment) {
+      toast.warning("O carrinho não pode estar vazio");
+    } else {
 
-    // if(!card) {
-    //   toast.warning("Selecione um cartão");
-    // }
+    }
 
-    setFinished(true);
+    if(!card) {
+        console.log("Não tem cartão");
+        toast.warning("Selecione um cartão");
+    }  
+
+    
+    const order: Order = {      
+      produtos: prepareOrder(),
+      pagamento: {
+        nrCartao: ""
+      }
+    };
+      
+    try {
+      const response = await create( order);      
+      setFinished(response);
+    } catch (err) {
+      toast.error("Erro ao realizar o pedido");
+    }
   }
 
-  function test() {
+  function prepareOrder() : OrderItem[] {
+    const response:OrderItem[] = [];
+
+    cart.forEach(item => {
+
+      const orderItem:OrderItem = {
+        id: item.id!!,
+        "qtd": item.quantidade!!
+      }
+      response.push(orderItem);
+    });
+
+    return response;
+  }
+
+  function closeModal() {
     setFinished(false);
     onRequestClose();
   }
@@ -66,12 +100,12 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={() => test()}
+      onRequestClose={() => closeModal()}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >{finished ? 
       <>
-        <button type="button" onClick={() => test()} className="react-modal-close">
+        <button type="button" onClick={() => closeModal()} className="react-modal-close">
           <img src={closeImg} alt="Fechar" />
         </button>
         <Container>
@@ -83,7 +117,7 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
       </> 
       :
       <>
-        <button type="button" onClick={() => test()} className="react-modal-close">
+        <button type="button" onClick={() => closeModal()} className="react-modal-close">
           <img src={closeImg} alt="Fechar" />
         </button>
         <Container>
