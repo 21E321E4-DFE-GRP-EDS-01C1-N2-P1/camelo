@@ -47,7 +47,6 @@ public class AuthService {
 
         } catch (Exception e) {
             throw new RuntimeException("ERRO AO ENVIAR E-MAIL PARA O USUARIO");
-
         }
     }
 

@@ -77,14 +77,14 @@ public class UserRepository implements UserPort {
     @Override
     public User buscarPor(Long id) {
         var userModel = userData.findById(id).orElseThrow();
-        return mapper.map(userModel);
+        return converter(userModel);
     }
 
     @Override
     public User salvar(User user) {
         var userModel = converter(user);
         var usuarioCriado = userData.save(userModel);
-        return mapper.map(usuarioCriado);
+        return converter(usuarioCriado);
     }
 
     private UserModel converter(User user) {
@@ -101,5 +101,12 @@ public class UserRepository implements UserPort {
         model.setRoles(user.getRoles().stream().map(it -> roleData.findById(it.getId()).get()).collect(Collectors.toList()));
         model.setCartoes(user.getCartoes().stream().map(it -> cartaoData.findById(it.getId()).get()).collect(Collectors.toList()));
         return model;
+    }
+
+    private User converter(UserModel userModel) {
+        return new User(
+                userModel.getId(), userModel.getName(), userModel.getEmail(),
+                userModel.getPassword(), userModel.getEndereco(), userModel.getCep(),
+                userModel.getBairro(), userModel.getCidade());
     }
 }

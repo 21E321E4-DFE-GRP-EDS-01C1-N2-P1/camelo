@@ -3,7 +3,7 @@ package com.camelo.camelobackend.domain.objectvalues;
 import java.util.Objects;
 
 public enum Situacao {
-    EM_PROCESSAMENTO(2, "EM_PROCESSAMENTO"),
+    EM_PROCESSAMENTO(2, "PROCESSAMENTO"),
     PROCESSADO(3, "PROCESSADO"),
     EM_TRANSPORTE(4, "EM_TRANSPORTE"),
     CANCELADO(5, "CANCELADO");

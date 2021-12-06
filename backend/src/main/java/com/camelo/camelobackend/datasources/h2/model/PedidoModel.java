@@ -21,7 +21,7 @@ public class PedidoModel {
 
     private Long usuario;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ItemPedidoModel> itens = new HashSet<>();
 
     @NotBlank

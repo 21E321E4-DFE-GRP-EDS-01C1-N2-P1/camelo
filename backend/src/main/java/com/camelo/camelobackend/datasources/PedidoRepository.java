@@ -7,6 +7,9 @@ import com.camelo.camelobackend.ports.PedidoPort;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class PedidoRepository implements PedidoPort {
 
@@ -25,5 +28,15 @@ public class PedidoRepository implements PedidoPort {
 
         var persisted = data.save(pedidoModel);
         return mapper.map(persisted);
+    }
+
+    @Override
+    public List<Pedido> pesquisarPedidos(String situacao) {
+        var pedidos = new ArrayList<Pedido>();
+        var pedidosModel = data.findAllBySituacao(situacao);
+        pedidosModel.forEach(it -> {
+            pedidos.add(mapper.map(it));
+        });
+        return pedidos;
     }
 }

@@ -64,4 +64,15 @@ public class Pedido {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", itens=" + itens +
+                ", usuario=" + usuario +
+                ", nrCartao='" + nrCartao + '\'' +
+                ", situacao='" + situacao + '\'' +
+                '}';
+    }
 }
