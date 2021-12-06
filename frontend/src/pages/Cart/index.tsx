@@ -69,11 +69,7 @@ export default function Cart() {
                   <th>Frete</th>
                   <td>GRÁTIS</td>
                 </tr>
-
-                <tr>
-                  <th>Cupom</th>
-                  <td>Não</td>
-                </tr>
+                
               </tbody>
               <tfoot>
                 <tr>
@@ -84,8 +80,8 @@ export default function Cart() {
             </table>
             <button onClick={oppenModal}>Finalizar</button>
             <NewPaymentModal        
-            isOpen={isNewModalOpen}
-            onRequestClose={handleCloseNewModal} />
+              isOpen={isNewModalOpen}
+              onRequestClose={handleCloseNewModal} />
           </Summary>
         </CheckOut>
       </Container>

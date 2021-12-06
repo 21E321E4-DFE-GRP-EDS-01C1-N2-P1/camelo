@@ -23,7 +23,6 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   const { cart } = useCart();
   const { response, loadCardsOffUser } = useCard();
   const { create } = useCheckout();
-  const { handleOpenNewModal, isNewModalOpen, handleCloseNewModal } = useModal();
 
   const [ carregado, setCarregado ] = useState(false);
   const [nrCartao, setNrCartao] = useState('');
@@ -51,8 +50,10 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!response?.content) {
+    console.log(response);
+    if (response?.content.length === 0) {
       toast.error("Cadastre um cartão de pagamento");
+      
     } else {
 
       const order: Order = {      
@@ -122,7 +123,7 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
           <h2>Finalizar Pagamento</h2>
 
           <section className="AreaCartao">
-            <p>{response?.content ? 'Escolha uma opção para pagamento:' : ''}</p>
+            <p>{response?.content.length === 0 ?  '' : 'Escolha uma opção para pagamento:'}</p>
 
               {response?.content ? 
                 response?.content.map(cartao => (

@@ -53,7 +53,7 @@ public class NotificarSituacaoPedidoUseCase {
 
     private Mail getMail(Pedido pedido) {
         var props = new HashMap<String, Object>();
-        var usuario = userPort.buscarPor(pedido.getId());
+        var usuario = userPort.buscarPor(pedido.getUsuario());
 
         props.put("situacao", pedido.getSituacao());
         props.put("usuario", usuario.getName());
