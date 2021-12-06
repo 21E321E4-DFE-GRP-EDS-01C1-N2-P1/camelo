@@ -3,33 +3,38 @@ USUARIO
     - registrar
         - não pode permitir email duplicado
         - verificacao de senha
+    - prioridade 1
         
     - autenticar
         - email precisa estar cadastrado
         - senha precisa ser encriptada
+    - prioridade 1
 
     - editar perfil
         - editar o endereço
         - cadastrar forma de pagamento
         - informar o nome
         - mudar a senha
+    - prioridade 1
 
     - esqueci minha senha
         - envia uma nova senha para o email do usuario
+        - prioridade 3
 
     - deve poder favoritar um produto
+    - prioridade 3
 
 
 APLICACAO
-    - listar produtos
-    - obter um produto selecionado
-        exibir detalhes do protudo
-    - permitir adicionar produto ao carrinho
-    - compartilhar link do produto por rede social
-    - permitir filtro por tipos de produto
-    - permitir pagamento
-        - selecionar forma de pagamento ja cadastrado
-        - permitir o cadastro de uma forma de pagamento
-    - enviar email informando pedido
+    - listar produtos | prioridade 1
+    - obter um produto selecionado 
+        exibir detalhes do protudo | prioridade 1
+    - permitir adicionar produto ao carrinho | prioridade 1
+    - compartilhar link do produto por rede social | prioridade 1
+    - permitir filtro por tipos de produto | prioridade 3
+    - permitir pagamento | prioridade 3
+        - selecionar forma de pagamento ja cadastrado | prioridade 3
+        - permitir o cadastro de uma forma de pagamento | prioridade 3
+    - enviar email informando pedido | prioridade 3
 
 
