@@ -10,7 +10,9 @@ import { useCard } from '../../hooks/useCard';
 import { useModal } from "../../hooks/useModal";
 import { useCheckout } from '../../hooks/useCheckout';
 import sucessImg from "../../assets/Success.svg";
+
 import { Order, OrderItem } from '../../util/format'
+import history from '../../history';
 
 interface NewPaymentModalProps {
   isOpen: boolean;
@@ -72,6 +74,7 @@ export function NewPaymentModal({ isOpen, onRequestClose }: NewPaymentModalProps
     try {
       const response = await create( order);      
       setFinished(response);
+      history.push("/home");
     } catch (err) {
       toast.error("Erro ao realizar o pedido");
     }

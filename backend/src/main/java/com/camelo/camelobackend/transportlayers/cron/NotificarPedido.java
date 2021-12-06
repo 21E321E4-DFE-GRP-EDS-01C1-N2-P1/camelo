@@ -67,4 +67,13 @@ public class NotificarPedido {
         var pedidos = pedidoPort.pesquisarPedidos(CANCELADO);
         pedidos.forEach(notificarSituacaoPedidoUseCase::executar);
     }
+
+    @Scheduled(fixedDelay = MINUTO, zone = TIME_ZONE)
+    public void finalizar() {
+        var pedidos = pedidoPort.pesquisarPedidos(CANCELADO);
+        pedidos.forEach(it -> {
+            it.setSituacao(Situacao.FINALIZADO.getDescricao());
+            pedidoPort.salvar(it);
+        });
+    }
 }
